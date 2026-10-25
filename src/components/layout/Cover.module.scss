@@ -1,0 +1,28 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+@use 'wave';
+
+@include wave.keyframes;
+
+.cover {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  background: var(--clay);
+  color: var(--cream);
+}
+.in { animation: wave-rise 1s $ease-io both; }
+.out { animation: wave-lift 1.05s $ease-io both; }
+
+.inner {
+  display: grid;
+  justify-items: center;
+  gap: 22px;
+  padding: 0 24px;
+  text-align: center;
+}
+.num { @include serif(200); font-size: 22px; line-height: 1; }
+.title { @include display(clamp(64px, 12vw, 200px)); line-height: 0.9; overflow: hidden; }
+.label { @include label; }

@@ -1,0 +1,112 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+:root {
+  --cream: #{$cream};
+  --cream-2: #{$cream-2};
+  --ink: #{$ink};
+  --muted: #{$muted};
+  --clay: #{$clay};
+  --clay-light: #{$clay-light};
+  --olive: #{$olive};
+  --fog: #{$fog};
+  --gutter: #{$gutter};
+  --ease: #{$ease};
+}
+
+// High-contrast mode toggled from the menu (html[data-contrast="high"]).
+:root[data-contrast='high'] {
+  --cream: #ffffff;
+  --cream-2: #f2f2f2;
+  --ink: #000000;
+  --muted: #1f1f1f;
+  --clay: #8a2210;
+  --fog: #e6e6e6;
+}
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  --font-display: 'Noto Serif Display';
+  --font-sans: 'Commissioner';
+  --font-mono: 'Fira Mono';
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+html[data-text='l'] { font-size: 118%; }
+html[data-text='xl'] { font-size: 135%; }
+
+html.lenis,
+html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.67;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+img, video, canvas { display: block; max-width: 100%; }
+a { color: var(--clay); }
+a:hover { text-decoration-thickness: 2px; }
+button { font: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--clay-light);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: -80px;
+  z-index: 300;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--cream);
+  &:focus { top: 16px; }
+}
+
+// Custom cursor hides the native one only with a fine pointer and motion allowed.
+@media (pointer: fine) {
+  html.has-cursor,
+  html.has-cursor * {
+    cursor: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+html[data-motion='off'] *,
+html[data-motion='off'] *::before,
+html[data-motion='off'] *::after {
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.01ms !important;
+}

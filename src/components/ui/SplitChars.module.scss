@@ -1,0 +1,26 @@
+@use 'tokens' as *;
+
+.line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+}
+.word {
+  display: inline-block;
+  white-space: nowrap;
+}
+.ch {
+  display: inline-block;
+  white-space: pre;
+  transform: translateY(105%);
+}
+.play .ch { animation: rise 1.15s $ease forwards; }
+
+@keyframes rise {
+  to { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ch { transform: none; }
+}
+:global(html[data-motion='off']) .ch { transform: none; }

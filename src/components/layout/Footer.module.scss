@@ -1,0 +1,16 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+.footer { background: var(--ink); color: var(--cream); padding: 64px $gutter 0; overflow: hidden; }
+.row { max-width: $container; margin: 0 auto; display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; font-size: 1rem; }
+.muted { color: var(--fog); }
+.links { display: flex; gap: 24px; flex-wrap: wrap; a { color: var(--cream); text-decoration: none; &:hover { color: var(--clay-light); } } }
+.giant {
+  margin: 0;
+  @include serif(200);
+  font-size: clamp(120px, 31vw, 520px);
+  line-height: 0.78;
+  letter-spacing: -0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}

@@ -1,0 +1,24 @@
+@use 'tokens' as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: $target;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s $ease, color 0.2s $ease, border-color 0.2s $ease;
+  svg { transition: transform 0.45s $ease; }
+  &:hover svg { transform: translateX(4px) rotate(-45deg); }
+}
+.clay { background: var(--clay); color: var(--cream); &:hover { background: var(--ink); color: var(--cream); } }
+.ink { background: var(--ink); color: var(--cream); &:hover { background: var(--clay); color: var(--cream); } }
+.line { background: transparent; color: var(--ink); border-color: var(--ink); &:hover { background: var(--ink); color: var(--cream); } }
+.cream { background: var(--cream); color: var(--ink); &:hover { background: var(--ink); color: var(--cream); } }
+.ghost { background: transparent; color: var(--cream); border-color: rgba(239, 233, 220, 0.55); &:hover { background: var(--cream); color: var(--ink); } }

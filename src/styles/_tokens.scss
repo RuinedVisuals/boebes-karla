@@ -1,0 +1,24 @@
+// Design tokens — Μουσείο Κάρλας V2 «Κατάλογος Νο 1»
+// Colour pairs are contrast-checked: cream/clay 5.0, cream/olive 5.6, muted/cream 5.7, cream/ink 14.6, clay-light/ink 6.1.
+
+$cream: #efe9dc;
+$cream-2: #e4dccb;
+$cream-3: #d6ccb6;
+$ink: #141a18;
+$ink-2: #1d2522;
+$muted: #575c55;
+$clay: #b03a24;
+$clay-light: #e8775f;
+$olive: #5e5d2e;
+$fog: #a9ad9f;
+
+$ease: cubic-bezier(0.22, 1, 0.36, 1);
+$ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+
+$gutter: clamp(16px, 4vw, 64px);
+$container: 1480px;
+$radius: 22px;
+$target: 48px;
+
+$bp-sm: 760px;
+$bp-md: 980px;

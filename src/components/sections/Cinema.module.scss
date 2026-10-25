@@ -1,0 +1,51 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+.cinema { position: relative; background: var(--ink); color: var(--cream); overflow: hidden; }
+.inner { min-height: 100svh; display: grid; align-content: center; gap: 40px; padding: 80px 0; }
+.head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding: 0 $gutter; flex-wrap: wrap; }
+.h { @include display; }
+.meta { display: grid; gap: 10px; justify-items: end; }
+.label { @include label; color: var(--clay-light); }
+.meta .label { color: var(--fog); }
+.progress { width: 220px; height: 2px; background: rgba($cream, 0.2); i { display: block; height: 100%; background: var(--clay-light); transform-origin: left; transform: scaleX(0); } }
+.track {
+  display: flex;
+  gap: 28px;
+  padding: 0 $gutter;
+  width: max-content;
+  will-change: transform;
+  @include below($bp-sm) { width: auto; overflow-x: auto; scroll-snap-type: x mandatory; }
+}
+.card {
+  flex: none;
+  width: min(760px, 78vw);
+  display: grid;
+  gap: 14px;
+  color: var(--cream);
+  text-decoration: none;
+  scroll-snap-align: start;
+}
+.media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: $radius;
+  overflow: hidden;
+  img { object-fit: cover; filter: grayscale(0.6) brightness(0.85); transition: filter 0.7s $ease, transform 1.4s $ease; }
+  .card:hover & img { filter: none; transform: scale(1.05); }
+}
+.play {
+  position: absolute;
+  left: 22px;
+  bottom: 22px;
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: var(--cream);
+  color: var(--ink);
+  transition: transform 0.5s $ease;
+  .card:hover & { transform: scale(1.15); }
+}
+.title { margin: 0; @include serif(300); font-size: clamp(26px, 2.4vw, 38px); line-height: 1.05; }
