@@ -1,0 +1,75 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+// A dark museum plinth: the boat floats over its own soft shadow, a warm pool of light behind it.
+.boat {
+  @include section-y;
+  color: var(--cream);
+  background:
+    radial-gradient(ellipse 55% 45% at 50% 52%, rgba(#e8c9a0, 0.16), rgba($ink, 0) 70%),
+    var(--ink);
+  overflow: hidden;
+}
+.head { @include container; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+.hint { margin: 0; @include label; color: var(--fog); }
+
+.stage { position: relative; height: clamp(420px, 62vw, 820px); margin-top: 8px; }
+.canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: pan-y; }
+.fallback { object-fit: cover; }
+
+// Numbered points pinned to the model (positioned every frame from the 3D scene).
+.mark {
+  position: absolute;
+  left: -20px;
+  top: -20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1.5px solid var(--cream);
+  background: rgba($ink, 0.55);
+  backdrop-filter: blur(4px);
+  color: var(--cream);
+  @include label;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s, background 0.3s $ease;
+  &::after { content: ''; position: absolute; inset: -7px; border-radius: inherit; border: 1px solid rgba($cream, 0.45); opacity: 0; }
+  &:hover, &[aria-pressed='true'] { background: var(--clay); border-color: var(--clay); }
+  @include motion-ok { &::after { animation: pulse 2.4s $ease infinite; } }
+  @include focus-ring;
+}
+@keyframes pulse { from { opacity: 0.8; transform: scale(0.8); } to { opacity: 0; transform: scale(1.5); } }
+
+.foot {
+  @include container;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 32px;
+  row-gap: 32px;
+  border-top: 1px solid rgba($cream, 0.15);
+  padding-top: 28px;
+}
+.index { grid-column: 1 / span 6; list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; @include below($bp-md) { grid-column: 1 / -1; } }
+.row {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba($cream, 0.3);
+  background: none;
+  color: var(--cream);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s $ease, border-color 0.3s $ease;
+  &:hover { border-color: var(--cream); }
+  &[aria-pressed='true'] { background: var(--cream); color: var(--ink); .n { color: var(--clay); } }
+  @include focus-ring;
+}
+.n { @include label; color: var(--clay-light); }
+.note { grid-column: 8 / span 5; display: grid; gap: 8px; animation: in 0.6s $ease both; @include below($bp-md) { grid-column: 1 / -1; } }
+.noteTitle { margin: 0; @include serif(300); font-size: clamp(26px, 2.4vw, 38px); line-height: 1.05; letter-spacing: -0.02em; }
+.noteText { margin: 0; max-width: 46ch; font-size: 1rem; line-height: 1.6; color: rgba($cream, 0.82); }
+@keyframes in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }

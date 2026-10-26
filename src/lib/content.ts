@@ -3,7 +3,7 @@
 
 export type Img = { src: string; alt: string; width?: number; height?: number };
 
-export type ArchiveCategory = 'karavi' | 'fishing' | 'louro' | 'drainage';
+export type ArchiveCategory = 'karavi' | 'fishing' | 'louro' | 'drainage' | 'museum';
 export type EventCategory = 'culture' | 'environment' | 'education';
 
 export type SiteSettings = {
@@ -46,6 +46,7 @@ export const archiveCategoryLabel: Record<ArchiveCategory, string> = {
   fishing: 'Ψάρεμα',
   louro: 'Λούρα',
   drainage: 'Αποξήρανση',
+  museum: 'Το Μουσείο',
 };
 
 export const eventCategoryLabel: Record<EventCategory, string> = {
@@ -140,18 +141,21 @@ export const fallbackContent: HomeContent = {
     { title: 'Μια μέρα στα λούρα', meta: 'Εκπαίδευση · 01.2022', image: IMG.hutWater, youtubeId: null, href: null },
     { title: 'Ζω — Αποδράσεις: αφιέρωμα στην Κάρλα', meta: 'Έντυπο · 05.2022', image: IMG.reeds, youtubeId: null, href: null },
   ],
+  // Photographs from the museum's archive page (boebes-karla.gr/fwtografies-arxeiou).
   archive: [
-    { caption: 'Ψαράς με κοντάρι', year: '1958', category: 'fishing', photographer: null, image: IMG.fisher, height: 300 },
-    { caption: 'Το καράβι στα καλάμια', year: '2021', category: 'karavi', photographer: 'ΚΕ.ΜΕ.ΒΟ.', image: IMG.nets, height: 220 },
-    { caption: 'Λούρο στο νερό', year: '1950s', category: 'louro', photographer: null, image: IMG.hutWater, height: 260 },
-    { caption: 'Πλατσίδα', year: '1960', category: 'karavi', photographer: null, image: IMG.castle, height: 180 },
-    { caption: 'Καλαμιές', year: '2022', category: 'drainage', photographer: null, image: IMG.reeds, height: 320 },
-    { caption: 'Στο νερό', year: '1955', category: 'fishing', photographer: null, image: IMG.fisherCrop, height: 340 },
-    { caption: 'Η βάρκα «1»', year: '1962', category: 'karavi', photographer: null, image: IMG.boatWater, height: 200 },
-    { caption: 'Κατίκια', year: '1950s', category: 'louro', photographer: null, image: IMG.hut, height: 240 },
-    { caption: 'Δίχτυα', year: '2021', category: 'fishing', photographer: null, image: IMG.ropes, height: 330 },
-    { caption: 'Η λίμνη', year: '1940s', category: 'drainage', photographer: null, image: IMG.lake, height: 210 },
-    { caption: 'Βοιβηίς', year: '1950s', category: 'drainage', photographer: null, image: IMG.sunset, height: 190 },
-    { caption: 'Η επιστροφή', year: '1959', category: 'fishing', photographer: null, image: IMG.fisher, height: 260 },
+    { caption: 'Το καράβι στην κεντρική αίθουσα', year: '', category: 'karavi', photographer: 'ΚΕ.ΜΕ.ΒΟ.', image: { src: '/images/archive/a01.webp', alt: 'Η κεντρική αίθουσα με το καράβι, το λούρο και τα καθίσματα εκδηλώσεων' }, height: 180 },
+    { caption: 'Το καράβι «1» με τους ψαράδες', year: '', category: 'karavi', photographer: 'ΚΕ.ΜΕ.ΒΟ.', image: { src: '/images/archive/a02.webp', alt: 'Το καράβι με τον αριθμό 1 και ομοιώματα ψαράδων, πάνω σε ξύλινες βάσεις' }, height: 180 },
+    { caption: 'Κοντάρια, δίχτυα, καλάθια', year: '', category: 'karavi', photographer: 'ΚΕ.ΜΕ.ΒΟ.', image: { src: '/images/archive/a03.webp', alt: 'Το καράβι από το πλάι με τα κοντάρια, τα δίχτυα και τα καλάθια' }, height: 180 },
+    { caption: 'Μέσα στο λούρο', year: '', category: 'louro', photographer: 'ΚΕ.ΜΕ.ΒΟ.', image: { src: '/images/archive/a04.webp', alt: 'Το εσωτερικό της καλαμένιας καλύβας με φωτισμό' }, height: 190 },
+    { caption: 'Παιδικό εργαστήρι', year: '', category: 'museum', photographer: 'ΚΕ.ΜΕ.ΒΟ.', image: { src: '/images/archive/a05.webp', alt: 'Παιδιά παίζουν επιτραπέζιο στο πάτωμα του μουσείου' }, height: 190 },
+    { caption: 'Το λούρο και το καράβι', year: '', category: 'louro', photographer: 'ΚΕ.ΜΕ.ΒΟ.', image: { src: '/images/archive/a06.webp', alt: 'Το λούρο και το καράβι μέσα στην αίθουσα, από ψηλά' }, height: 210 },
+    { caption: 'Ομιλία στην αίθουσα', year: '', category: 'museum', photographer: 'ΚΕ.ΜΕ.ΒΟ.', image: { src: '/images/archive/a07.webp', alt: 'Μαθητές παρακολουθούν ομιλία μέσα στο μουσείο' }, height: 210 },
+    { caption: 'Σχολείο στο μουσείο', year: '', category: 'museum', photographer: 'ΚΕ.ΜΕ.ΒΟ.', image: { src: '/images/archive/a08.webp', alt: 'Μαθητές καθισμένοι μπροστά στο λούρο και το καράβι' }, height: 210 },
+    { caption: 'Το κτίριο', year: '', category: 'museum', photographer: 'ΚΕ.ΜΕ.ΒΟ.', image: { src: '/images/archive/a09.webp', alt: 'Η πρόσοψη του μουσείου, του παλιού κινηματογράφου των Καναλίων' }, height: 210 },
+    { caption: 'Η πλώρη με το «1»', year: '', category: 'karavi', photographer: 'ΚΕ.ΜΕ.ΒΟ.', image: { src: '/images/archive/a10.webp', alt: 'Το καράβι με τον αριθμό 1 και ομοιώματα ψαράδων' }, height: 210 },
+    { caption: 'Το παλιό σινεμά', year: '', category: 'museum', photographer: 'ΚΕ.ΜΕ.ΒΟ.', image: { src: '/images/archive/a11.webp', alt: 'Το κτίριο του μουσείου στα Κανάλια το σούρουπο' }, height: 210 },
+    { caption: 'Ο κωπηλάτης', year: '', category: 'karavi', photographer: 'ΚΕ.ΜΕ.ΒΟ.', image: { src: '/images/archive/a12.webp', alt: 'Ομοίωμα ψαρά που κωπηλατεί πάνω στο καράβι' }, height: 210 },
+    { caption: 'Στην κάμερα', year: '', category: 'museum', photographer: 'ΚΕ.ΜΕ.ΒΟ.', image: { src: '/images/archive/a13.webp', alt: 'Συνέντευξη στο μουσείο μπροστά στο σχέδιο του καραβιού' }, height: 180 },
+    { caption: 'Ο ψαράς με το καλάθι', year: '', category: 'karavi', photographer: 'ΚΕ.ΜΕ.ΒΟ.', image: { src: '/images/archive/a14.webp', alt: 'Ομοίωμα ψαρά με καλάθι δίπλα στο καράβι' }, height: 180 },
   ],
 };

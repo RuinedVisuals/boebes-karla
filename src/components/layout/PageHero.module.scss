@@ -1,0 +1,52 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+.hero { background-color: var(--ink); @include ripples(100% 0%); color: var(--cream); overflow: hidden; }
+.inner { @include container; padding-top: clamp(150px, 14vw, 230px); padding-bottom: clamp(56px, 6vw, 96px); display: grid; gap: clamp(32px, 4vw, 56px); }
+.crumbs {
+  display: flex;
+  gap: 12px;
+  @include label;
+  color: var(--fog);
+  a { color: var(--cream); text-decoration: none; &:hover { color: var(--clay-light); } }
+  [aria-current] { color: var(--clay-light); }
+}
+.title { margin: 0; display: grid; @include serif(200); font-size: clamp(52px, 9vw, 168px); line-height: 0.95; letter-spacing: -0.045em; }
+.second { padding-left: 1.1em; font-style: italic; color: var(--clay-light); @include below($bp-sm) { padding-left: 0; } }
+.foot {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 32px;
+  row-gap: 32px;
+  border-top: 1px solid rgba($cream, 0.18);
+  padding-top: 28px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 1s $ease 0.7s, transform 1s $ease 0.7s;
+  .go & { opacity: 1; transform: none; }
+}
+.lead { grid-column: 1 / span 6; margin: 0; max-width: 46ch; font-size: 1.1875rem; line-height: 1.6; color: rgba($cream, 0.86); @include below($bp-md) { grid-column: 1 / -1; } }
+.facts {
+  grid-column: 8 / span 5;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 32px;
+  dt { @include label; color: var(--fog); margin-bottom: 4px; }
+  dd { margin: 0; @include serif(300); font-size: clamp(20px, 1.6vw, 26px); line-height: 1.2; }
+  @include below($bp-md) { grid-column: 1 / -1; }
+}
+
+// Photo hero: the image fills the band, darkened toward the text; it settles from a slow zoom once the intro lifts.
+.withImage { position: relative; min-height: max(720px, 100svh); display: flex; align-items: flex-end; }
+.withImage .inner { position: relative; z-index: 1; width: 100%; padding-top: 160px; }
+.bg {
+  position: absolute;
+  inset: 0;
+  img { object-fit: cover; transform: scale(1.12); transition: transform 2.6s $ease; }
+  .go & img { transform: scale(1); }
+  &::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba($ink, 0.75) 0%, rgba($ink, 0.45) 25%, rgba($ink, 0.82) 50%, rgba($ink, 0.96) 100%); }
+}
+
+@media (prefers-reduced-motion: reduce) { .foot { opacity: 1; transform: none; } .bg img { transform: none; } }
+:global(html[data-motion='off']) .foot { opacity: 1; transform: none; }

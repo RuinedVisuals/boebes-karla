@@ -1,47 +1,33 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useExperience } from '@/components/providers/Experience';
 import { NAV } from '@/lib/nav';
 import s from './Nav.module.scss';
 
-const LINKS = NAV.filter((n) => ['karavi', 'halls', 'events', 'cinema', 'archive'].includes(n.target));
+const LINKS = NAV.filter((n) => n.href !== '/syndesmoi');
 
-/** Floating glass pill with section links; the current section is marked (scrollspy) so visitors always know where they are. */
+/** Floating glass pill with the site's pages; the current page is marked. */
 export default function Nav() {
   const { go, openMenu, menuOpen } = useExperience();
-  const [current, setCurrent] = useState<string | null>(null);
-
-  useEffect(() => {
-    const ids = NAV.map((n) => n.target);
-    const els = ids.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
-    const io = new IntersectionObserver(
-      (entries) => {
-        const hit = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (hit) setCurrent(hit.target.id);
-      },
-      { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.01] },
-    );
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
-  }, []);
-
-  const link = (title: string, target: string, num?: string) => (e: React.MouseEvent) => { e.preventDefault(); go(title, target, num); };
+  const path = usePathname();
+  const visit = (e: React.MouseEvent) => { e.preventDefault(); go('Επίσκεψη', 'visit'); };
 
   return (
     <header className={s.nav}>
-      <a href="#hero" className={s.brand} onClick={link('Κάρλα', 'hero')} aria-label="Μουσείο Λιμναίου Πολιτισμού Κάρλας, αρχή σελίδας">
+      <Link href="/" className={s.brand} aria-label="Μουσείο Λιμναίου Πολιτισμού Κάρλας, αρχική σελίδα">
         Κάρλα <span>Μουσείο</span>
-      </a>
-      <nav className={s.links} aria-label="Ενότητες">
+      </Link>
+      <nav className={s.links} aria-label="Σελίδες">
         {LINKS.map((n) => (
-          <a key={n.target} href={`#${n.target}`} aria-current={current === n.target ? 'true' : undefined} onClick={link(n.title, n.target, n.num)}>
+          <Link key={n.href} href={n.href} aria-current={path === n.href ? 'page' : undefined}>
             {n.title}
-          </a>
+          </Link>
         ))}
       </nav>
       <div className={s.actions}>
-        <a href="#visit" className={s.visit} onClick={link('Επίσκεψη', 'visit', '06')}>Επίσκεψη</a>
+        <Link href="/#visit" className={s.visit} onClick={visit}>Επίσκεψη</Link>
         <button type="button" className={s.menu} onClick={openMenu} aria-expanded={menuOpen} aria-haspopup="dialog">ΜΕΝΟΥ</button>
       </div>
     </header>

@@ -112,7 +112,7 @@ const archiveCategory = defineType({
   type: 'document',
   fields: [
     defineField({ name: 'title', title: 'Τίτλος', type: 'string' }),
-    defineField({ name: 'key', title: 'Κλειδί', type: 'string', options: { list: ['karavi', 'fishing', 'louro', 'drainage'] } }),
+    defineField({ name: 'key', title: 'Κλειδί', type: 'string', options: { list: ['karavi', 'fishing', 'louro', 'drainage', 'museum'] } }),
   ],
 });
 

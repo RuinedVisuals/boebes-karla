@@ -3,7 +3,7 @@
 
 .karavi {
   @include container;
-  @include section-y(clamp(150px, 13vw, 220px));
+  @include section-y;
 }
 .top {
   display: grid;

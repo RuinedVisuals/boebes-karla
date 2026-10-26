@@ -55,5 +55,3 @@
 }
 .actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 
-// On its own page the panel clears the floating nav.
-.full .panel { top: clamp(104px, 9vw, 128px); }

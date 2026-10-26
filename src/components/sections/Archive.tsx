@@ -35,7 +35,7 @@ export default function Archive({ photos, full = false }: { photos: ArchivePhoto
       out.push({ ...p, col: c, row: r, idx: out.length, no: String(out.length + 1).padStart(2, '0') });
     }
     return out;
-  }, [photos, COLS, ROWS]);
+  }, [photos, full]); // COLS/ROWS follow `full`
 
   const visible = tiles.filter((t) => cat === 'all' || t.category === cat);
   const counts = useMemo(() => {
@@ -106,28 +106,28 @@ export default function Archive({ photos, full = false }: { photos: ArchivePhoto
             draggable={false}
             className={`${s.tile} ${cat !== 'all' && t.category !== cat ? s.dim : ''}`}
             data-cursor="Δείτε"
-            aria-label={`${t.caption}, ${t.year}: μεγέθυνση`}
+            aria-label={`${[t.caption, t.year].filter(Boolean).join(', ')}: μεγέθυνση`}
             tabIndex={cat !== 'all' && t.category !== cat ? -1 : 0}
             onClick={openTile(t)}
           >
             <figure>
               <div className={s.ph} style={{ height: t.height }}><img src={t.image.src} alt="" draggable={false} loading="lazy" /></div>
-              <figcaption><span>{t.no} — {t.caption}</span><span>{t.year}</span></figcaption>
+              <figcaption><span>{t.no} — {t.caption}</span><span>{t.year || t.photographer}</span></figcaption>
             </figure>
           </a>
         ))}
       </div>
       <div className={s.panel}>
-        <SectionHead index={full ? 'Αρχείο' : '05'} kicker="Φωτογραφικό αρχείο" title="Ό,τι θυμάται η λίμνη" id="archive-title" />
+        {full ? <h2 id="archive-title" className="sr-only">Ο πίνακας του αρχείου</h2> : <SectionHead index="05" kicker="Φωτογραφικό αρχείο" title="Ό,τι θυμάται η λίμνη" id="archive-title" />}
         <div className={s.chips} role="group" aria-label="Κατηγορίες φωτογραφιών">
-          {(['all', 'karavi', 'fishing', 'louro', 'drainage'] as const).map((c) => (
+          {(['all', 'karavi', 'fishing', 'louro', 'drainage', 'museum'] as const).filter((c) => counts[c]).map((c) => (
             <button key={c} type="button" className={s.chip} aria-pressed={cat === c} onClick={() => setCat(c)}>
               {c === 'all' ? 'Όλες' : archiveCategoryLabel[c]} <small>{counts[c] ?? 0}</small>
             </button>
           ))}
         </div>
         <div className={s.actions}>
-          {full ? <Button href="/" variant="line">← Αρχική</Button> : <Button href="/archive" variant="ink" arrow>Όλο το αρχείο</Button>}
+          {!full && <Button href="/archive" variant="ink" arrow>Όλο το αρχείο</Button>}
           <span className={s.kicker}>Σύρετε · κλικ για μεγέθυνση</span>
         </div>
       </div>

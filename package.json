@@ -20,13 +20,15 @@
     "next-sanity": "^9.12.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "sass": "^1.106.1"
+    "sass": "^1.106.1",
+    "three": "^0.170.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "^0.170.0",
     "eslint": "^9",
     "eslint-config-next": "15.5.28",
     "typescript": "^5"

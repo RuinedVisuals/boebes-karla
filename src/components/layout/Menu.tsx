@@ -9,7 +9,7 @@ import s from './Menu.module.scss';
 
 /** Fullscreen menu. Opens and closes with the wave; WebGL image morph on hover. */
 export default function Menu() {
-  const { closeMenu, go, settings } = useExperience();
+  const { closeMenu, settings } = useExperience();
   const [active, setActive] = useState(0);
   const [closing, setClosing] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -55,14 +55,14 @@ export default function Menu() {
         <nav aria-label="Ενότητες">
           <ul className={s.list}>
             {NAV.map((n, i) => (
-              <li key={n.target}>
+              <li key={n.href}>
                 <a
                   ref={i === 0 ? firstLink : undefined}
-                  href={`#${n.target}`}
+                  href={n.href}
                   className={`${s.item} ${i === active ? s.on : ''}`}
                   onMouseEnter={() => setActive(i)}
                   onFocus={() => setActive(i)}
-                  onClick={(e) => { e.preventDefault(); go(n.title, n.target, n.num); }}
+                  onClick={closeMenu}
                 >
                   <span className={s.num}>{n.num}</span>
                   <span className={s.title}>{n.title}</span>
@@ -94,7 +94,7 @@ export default function Menu() {
         <div className={s.group}>
           <span className={s.label}>Σχολεία & ομάδες</span>
           <span className={s.text}>Εκπαιδευτικά προγράμματα για 6–15 ετών</span>
-          <a className={s.textLink} href="#events" onClick={(e) => { e.preventDefault(); go('Εκπαίδευση', 'events', '03'); }}>Δείτε τα προγράμματα →</a>
+          <a className={s.textLink} href="/draseis#ekpaideusi" onClick={closeMenu}>Δείτε τα προγράμματα →</a>
         </div>
         <div className={s.group}>
           <span className={s.label}>Περιήγηση 360°</span>

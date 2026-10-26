@@ -1,0 +1,103 @@
+import type { Metadata } from 'next';
+import Experience from '@/components/providers/Experience';
+import Nav from '@/components/layout/Nav';
+import Footer from '@/components/layout/Footer';
+import PageHero from '@/components/layout/PageHero';
+import { Chapter, LinkIndex, Timeline } from '@/components/page/Blocks';
+import { getHomeContent } from '@/lib/sanity/queries';
+
+export const revalidate = 60;
+
+export const metadata: Metadata = {
+  title: 'Οι Δράσεις · Μουσείο Λιμναίου Πολιτισμού Κάρλας',
+  description: 'Πολιτιστικές, περιβαλλοντικές και εκπαιδευτικές δράσεις του ΚΕ.ΜΕ.ΒΟ. και του Μουσείου Λιμναίου Πολιτισμού Κάρλας.',
+};
+
+// Articles still live on the current WordPress site; links point there until they are moved to Sanity.
+const OLD = 'https://boebes-karla.gr';
+
+// Text: boebes-karla.gr/oi-draseis and its three category pages (ΚΕ.ΜΕ.ΒΟ.).
+export default async function ActionsPage() {
+  const c = await getHomeContent();
+  return (
+    <Experience settings={c.settings}>
+      <Nav />
+      <main id="main">
+        <PageHero
+          kicker="Οι Δράσεις"
+          title={['Οι Δράσεις', 'μας']}
+          lead="Ανοιχτές εκδηλώσεις, ημερίδες, θέατρο και περιβαλλοντικοί αγώνες, με έναν σκοπό: να διατηρηθεί και να ανανεωθεί η πολιτιστική ταυτότητα της παρακάρλιας περιοχής."
+          facts={[{ k: 'Πολιτισμός', v: 'Από το 2006' }, { k: 'Περιβάλλον', v: 'Μέλος ΠΑΝ.Δ.ΟΙΚ.Ο.' }, { k: 'Εκπαίδευση', v: 'Παιδικό εργαστήρι' }, { k: 'Ετήσια γιορτή', v: '20 Μαΐου' }]}
+          image={{ src: '/images/archive/a07.webp', alt: 'Μαθητές σε ομιλία μέσα στην κεντρική αίθουσα του μουσείου' }}
+        />
+
+        <Chapter
+          id="politismos"
+          index="01"
+          kicker="Πολιτισμός"
+          title="Η Κάρλα ως ζωντανή παράδοση"
+          images={[
+            { src: '/images/archive/a13.webp', alt: 'Συνέντευξη στο μουσείο, μπροστά στο σχέδιο του καραβιού της Κάρλας' },
+            { src: '/images/archive/a01.webp', alt: 'Η κεντρική αίθουσα με το καράβι και καθίσματα για εκδήλωση' },
+          ]}
+        >
+          <p>Κάθε χρόνο, σε συνεργασία με φορείς και συλλόγους της περιοχής, το ΚΕ.ΜΕ.ΒΟ. διοργανώνει στο μουσείο ανοιχτές εκδηλώσεις για την προβολή της τοπικής πολιτιστικής κληρονομιάς, με σκοπό τη διατήρηση και την ανανέωσή της.</p>
+          <h3>Πρόσφατα</h3>
+          <LinkIndex
+            items={[
+              { title: '«Το καράβι» της λίμνης Κάρλας', meta: '17.05.2024', href: `${OLD}/%cf%84%ce%bf-%ce%ba%ce%b1%cf%81%ce%ac%ce%b2%ce%b9-%cf%84%ce%b7%cf%82-%ce%bb%ce%af%ce%bc%ce%bd%ce%b7%cf%82-%ce%ba%ce%ac%cf%81%ce%bb%ce%b1%cf%82/` },
+              { title: 'Να ’μαστε καλά · ΕΡΤ3', meta: '10.01.2023', href: `${OLD}/%ce%bd%ce%b1-%ce%bc%ce%b1%cf%83%cf%84%ce%b5-%ce%ba%ce%b1%ce%bb%ce%b1-%ce%bc%ce%bf%cf%85%cf%83%ce%b5%ce%b9%ce%bf-%ce%bb%ce%b9%ce%bc%ce%bd%ce%b1%ce%b9%ce%bf%cf%85-%cf%80%ce%bf%ce%bb%ce%b9%cf%84%ce%b9/` },
+              { title: 'Κώδικας Μυστηρίων: οι θρύλοι της Κάρλας και ο Ήταυρος', meta: '21.06.2022', href: `${OLD}/mouseio-limnaiou-politismou-kwdikas-mistiriwn/` },
+              { title: '«Από πέτρα και χρόνο» στη λίμνη Κάρλα', meta: '21.06.2022', href: `${OLD}/%ce%b7-%ce%b5%ce%ba%cf%80%ce%bf%ce%bc%cf%80%ce%ae-%ce%b1%cf%80%cf%8c-%cf%80%ce%ad%cf%84%cf%81%ce%b1-%ce%ba%ce%b1%ce%b9-%cf%87%cf%81%cf%8c%ce%bd%ce%bf-%cf%83%cf%84%ce%b7%ce%bd-%ce%bb%ce%af%ce%bc/` },
+              { title: '1ος Διαγωνισμός Φωτογραφίας Άγριας Ζωής «Αγλαΐα Τσεκούρα»', meta: '25.05.2022', href: `${OLD}/1os-diagwnismos-erasitexnikis-fwtografias-agrias-zwhs-thw-limnis-karlas/` },
+              { title: 'Ζω – Αποδράσεις: αφιέρωμα στη λίμνη Κάρλα', meta: '23.05.2022', href: `${OLD}/zw-apodraseis-afierwma-sti-limni-karla/` },
+            ]}
+          />
+        </Chapter>
+
+        <Timeline
+          index="02"
+          kicker="Ορόσημα"
+          title="Από το 2006 ως σήμερα"
+          items={[
+            { year: '2006', title: 'Γιορτή του Αγίου Νικολάου Καναλίων', text: 'Κάθε 20 Μαΐου, Θεία Λειτουργία και ημερίδα για τον βυζαντινό ναό του 12ου αι. και την αναστύλωσή του. Τον Σεπτέμβριο, ημερίδα «Κάρλα: παρελθόν, παρόν και μέλλον» στο Καλαμάκι, με το καράβι και την καλύβα στην πλατεία.' },
+            { year: '2007', title: '«Θυμάμαι τη γιορτή της Ανθισμένης Αμυγδαλιάς»', text: 'Ένα παράδειγμα αγροτουρισμού πριν καν υπάρξει ο όρος.' },
+            { year: '2009', title: '«Άνθρωπος και πολιτισμός διαχρονικά στη λίμνη Κάρλα»', text: 'Ημερίδα στο μουσείο· τον Οκτώβριο, περίπτερο στο 8ο Επιχειρηματικό Πανόραμα Μαγνησίας.' },
+            { year: '2010', title: 'Ο Ήταυρος, μύθος και πραγματικότητα', text: 'Ημερίδα και το θεατρικό «Ήταυρος στο υγρό μάτι της θεσσαλικής γης», με σκηνικά τα εκθέματα του μουσείου· ντοκιμαντέρ της ΕΤ1 «Φωτόσφαιρα».' },
+            { year: '2011', title: 'Πρώτος οικολογικός γύρος Κάρλας', text: 'Ποδηλατοπορεία γύρω από τη νέα λίμνη, με την Περιβαλλοντική Πρωτοβουλία Μαγνησίας και τους Δήμους Ρήγα Φεραίου και Βόλου.' },
+          ]}
+        />
+
+        <Chapter id="perivallon" index="03" kicker="Περιβάλλον" title="Φωνή για τη λίμνη" tone="ink">
+          <p>Το ΚΕ.ΜΕ.ΒΟ., «Κέντρο Μελέτης και Προστασίας του Περιβάλλοντος και της Πολιτιστικής Κληρονομιάς στη Λίμνη Βοιβηίδα-Κάρλα», δραστηριοποιείται στον κάρλιο λιμναίο πολιτισμό και στο περιβάλλον της λίμνης: δύο παράγοντες που αλληλοσυμπληρώνονται.</p>
+          <p>Από το 2006 είναι μέλος του Πανελλήνιου Δικτύου Οικολογικών Οργανώσεων (ΠΑΝ.Δ.ΟΙΚ.Ο.). Με παρεμβάσεις, καταγγελίες και δημοσιοποίηση στα ΜΜΕ για τα οικολογικά προβλήματα, και με ημερίδες, αγωνίζεται για την προστασία της λίμνης.</p>
+          <p>Το 2012 οργάνωσε τρεις ημερίδες διαβούλευσης στον Ριζόμυλο, τα Κανάλια και το Βελεστίνο· το 2013-14 παρουσίασε το ντοκιμαντέρ «Κάρλα SOS: το χρονικό της πολύπαθης λίμνης».</p>
+          <LinkIndex items={[{ title: 'Περιβαλλοντικές δράσεις του μουσείου', meta: 'Αρχείο', href: `${OLD}/perivallontikes-draseis-tou-mouseio/` }]} />
+        </Chapter>
+
+        <Chapter
+          id="ekpaideusi"
+          index="04"
+          kicker="Εκπαίδευση"
+          title="Για μικρούς επισκέπτες"
+          tone="sand"
+          images={[
+            { src: '/images/archive/a05.webp', alt: 'Παιδιά παίζουν επιτραπέζιο στο πάτωμα του μουσείου' },
+            { src: '/images/archive/a08.webp', alt: 'Μαθητές μπροστά στο λούρο και το καράβι' },
+          ]}
+        >
+          <p>Στο μουσείο λειτουργεί παιδικό εργαστήρι. Σχολεία από όλη την περιοχή το επισκέπτονται, γνωρίζουν τη ζωή στη λίμνη μέσα από το καράβι, το λούρο και τα εργαλεία των ψαράδων, και συμμετέχουν σε βιβλιοπαρουσιάσεις και προγράμματα.</p>
+          <h3>Πρόσφατα</h3>
+          <LinkIndex
+            items={[
+              { title: 'Δελτίο τύπου – Βιβλιοπαρουσίαση', meta: '27.01.2023', href: `${OLD}/%ce%b4%ce%b5%ce%bb%cf%84%ce%b9%ce%bf%cf%85-%cf%84%cf%85%cf%80%ce%bf%cf%85-%ce%b2%ce%b9%ce%b2%ce%bb%ce%b9%ce%bf%cf%80%ce%b1%cf%81%ce%bf%cf%85%cf%83%ce%b9%ce%b1%cf%83%ce%b7/` },
+              { title: 'Κάρλα – Ιστορίες της λίμνης', meta: '19.03.2022', href: `${OLD}/karla-istories-tis-limnis/` },
+              { title: 'Βιβλιοπαρουσίαση: Η Λιμνονεραϊδούλα και οι φίλοι της', meta: '06.09.2021', href: `${OLD}/biblioparousiasi-limnoneraidoula-kai-oi-filoi-tis/` },
+            ]}
+          />
+        </Chapter>
+      </main>
+      <Footer settings={c.settings} />
+    </Experience>
+  );
+}

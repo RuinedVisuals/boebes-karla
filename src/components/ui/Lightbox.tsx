@@ -44,7 +44,7 @@ export default function Lightbox({ photos, index, onIndex, onClose }: Props) {
       <div className={s.foot}>
         <div>
           <div className={s.cap}>{p.caption}</div>
-          <span className={s.label}>{p.year}{p.photographer ? ` · ${p.photographer}` : ''}</span>
+          <span className={s.label}>{[p.year, p.photographer].filter(Boolean).join(' · ')}</span>
         </div>
         <div className={s.row}>
           <button type="button" className={s.round} onClick={() => step(-1)} aria-label="Προηγούμενη φωτογραφία"><Icon name="prev" /></button>
