@@ -69,7 +69,7 @@ export class HallScene {
     if (!this.visible) return;
     const { gl, canvas, u } = this;
     const [w, h] = fit(canvas);
-    const N = this.urls.length, R = 2.6, W = 1.0, H = 1.5, step = (W + 0.14) / R, total = N * step;
+    const N = this.urls.length, R = 2.6, W = 1.1, H = 1.62, step = (W + 0.12) / R, total = N * step;
     if (!this.dragging) this.target += (this.still() ? 0 : 0.0011) + this.scrollVel;
     this.scrollVel *= 0.9;
     const prev = this.rot;
@@ -78,7 +78,7 @@ export class HallScene {
     gl.viewport(0, 0, w, h);
     gl.clearColor(0.078, 0.102, 0.094, 1);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-    gl.uniformMatrix4fv(u.uProj, false, perspective(0.8, w / h));
+    gl.uniformMatrix4fv(u.uProj, false, perspective(w / h < 1 ? 1.15 : 0.74, w / h));
     gl.uniform1f(u.uR, R); gl.uniform1f(u.uVel, vel); gl.uniform1i(u.uTex, 0);
     gl.activeTexture(gl.TEXTURE0);
     let best = 9, bi = 0;

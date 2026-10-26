@@ -23,7 +23,7 @@
   grid-template-columns: 64px minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 0.7fr) 56px;
   align-items: center;
   gap: 20px;
-  padding: 22px 26px;
+  padding: 20px 26px;
   border: 1.5px solid rgba($clay, 0.35);
   border-radius: $radius;
   color: var(--clay);
@@ -32,8 +32,8 @@
   &:hover, &:focus-visible { background: var(--clay); color: var(--cream); transform: scale(1.015); box-shadow: 0 18px 40px -18px rgba($clay, 0.6); }
   @include below(860px) { grid-template-columns: 40px minmax(0, 1fr) 32px; gap: 12px; padding: 18px; .meta { display: none; } }
 }
-.n { @include serif(200); font-size: 40px; line-height: 1; }
-.title { margin: 0; @include serif(300); font-size: clamp(20px, 2.2vw, 34px); overflow-wrap: break-word; hyphens: auto; line-height: 1.05; letter-spacing: -0.01em; text-transform: uppercase; }
+.n { @include serif(200); font-size: 32px; line-height: 1; }
+.title { margin: 0; @include serif(300); font-size: clamp(20px, 1.9vw, 30px); overflow-wrap: break-word; hyphens: auto; line-height: 1.05; letter-spacing: -0.01em; }
 .meta { @include label; }
 .arrow { justify-self: end; transition: transform 0.45s $ease; .row:hover & { transform: rotate(-45deg); } }
 .more { display: flex; justify-content: flex-end; }

@@ -43,6 +43,20 @@
     font-size: 15px;
     transition: background 0.2s;
     &:hover { background: rgba(239, 233, 220, 0.12); }
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 6px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--clay-light);
+      transform: translateX(-50%) scale(0);
+      transition: transform 0.45s $ease;
+    }
+    &[aria-current='true']::after { transform: translateX(-50%) scale(1); }
   }
 }
 .actions { display: flex; gap: 6px; align-items: center; }

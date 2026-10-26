@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { HallScene } from '@/webgl/hall';
 import { prefersStill } from '@/lib/gsap';
 import type { Exhibit } from '@/lib/content';
+import SectionHead from '@/components/ui/SectionHead';
 import s from './Hall.module.scss';
 
 /** «Η αίθουσα»: concave WebGL gallery of the exhibits. Falls back to a scrollable strip without WebGL. */
@@ -28,15 +29,15 @@ export default function Hall({ exhibits }: { exhibits: Exhibit[] }) {
   return (
     <section id="hall" className={s.hall} aria-labelledby="hall-title">
       <div className={s.head}>
-        <h2 id="hall-title" className={s.h}>Η αίθουσα</h2>
-        <span className={s.now} aria-live="polite">Νο {String(index + 1).padStart(2, '0')} · {current?.title}</span>
+        <SectionHead index="02" kicker="Η αίθουσα" title="Περιηγηθείτε στα εκθέματα" id="hall-title" tone="light" />
+        <span className={s.now} aria-live="polite">{String(index + 1).padStart(2, '0')} — {current?.title}</span>
       </div>
       {glOk ? (
         <canvas ref={canvas} className={s.canvas} data-cursor="Σύρετε" aria-label="Περιστρεφόμενη αίθουσα με εκθέματα. Σύρετε για να περιηγηθείτε." role="img" />
       ) : (
         <ul className={s.strip}>
           {exhibits.map((e, i) => (
-            <li key={i}><img src={e.image.src} alt={e.image.alt} loading="lazy" /><span>Νο {String(i + 1).padStart(2, '0')} · {e.title}</span></li>
+            <li key={i}><img src={e.image.src} alt={e.image.alt} loading="lazy" /><span>{String(i + 1).padStart(2, '0')} — {e.title}</span></li>
           ))}
         </ul>
       )}

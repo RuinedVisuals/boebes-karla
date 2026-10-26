@@ -9,7 +9,7 @@ import s from './Menu.module.scss';
 
 /** Fullscreen menu. Opens and closes with the wave; WebGL image morph on hover. */
 export default function Menu() {
-  const { closeMenu, go, settings, textSize, setTextSize, contrast, setContrast, motionOff, setMotionOff } = useExperience();
+  const { closeMenu, go, settings } = useExperience();
   const [active, setActive] = useState(0);
   const [closing, setClosing] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -62,7 +62,7 @@ export default function Menu() {
                   className={`${s.item} ${i === active ? s.on : ''}`}
                   onMouseEnter={() => setActive(i)}
                   onFocus={() => setActive(i)}
-                  onClick={(e) => { e.preventDefault(); go(n.title, n.target, `Νο ${n.num}`); }}
+                  onClick={(e) => { e.preventDefault(); go(n.title, n.target, n.num); }}
                 >
                   <span className={s.num}>{n.num}</span>
                   <span className={s.title}>{n.title}</span>
@@ -87,19 +87,14 @@ export default function Menu() {
           <a href={`mailto:${settings.email}`} className={s.mail}>{settings.email}</a>
         </div>
         <div className={s.group}>
-          <span className={s.label}>Μέγεθος γραμμάτων</span>
-          <div className={s.row} role="group" aria-label="Μέγεθος γραμμάτων">
-            {(['m', 'l', 'xl'] as const).map((k, i) => (
-              <button key={k} type="button" className={s.tool} aria-pressed={textSize === k} onClick={() => setTextSize(k)} style={{ fontSize: 15 + i * 4 }} aria-label={['Κανονικά', 'Μεγάλα', 'Πολύ μεγάλα'][i] + ' γράμματα'}>Α</button>
-            ))}
-          </div>
+          <span className={s.label}>Ώρες λειτουργίας</span>
+          <span className={s.text}>{settings.hours ?? 'Κατόπιν ραντεβού'}</span>
+          <a className={s.textLink} href="https://www.google.com/maps/dir/?api=1&destination=39.5009492,22.8852162" target="_blank" rel="noopener noreferrer">{settings.address} · Οδηγίες ↗</a>
         </div>
         <div className={s.group}>
-          <span className={s.label}>Προβολή</span>
-          <div className={s.row}>
-            <button type="button" className={s.tool} aria-pressed={contrast} onClick={() => setContrast(!contrast)}>Υψηλή αντίθεση</button>
-            <button type="button" className={s.tool} aria-pressed={motionOff} onClick={() => setMotionOff(!motionOff)}>Χωρίς κίνηση</button>
-          </div>
+          <span className={s.label}>Σχολεία & ομάδες</span>
+          <span className={s.text}>Εκπαιδευτικά προγράμματα για 6–15 ετών</span>
+          <a className={s.textLink} href="#events" onClick={(e) => { e.preventDefault(); go('Εκπαίδευση', 'events', '04'); }}>Δείτε τα προγράμματα →</a>
         </div>
         <div className={s.group}>
           <span className={s.label}>Περιήγηση 360°</span>

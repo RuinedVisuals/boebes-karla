@@ -1,11 +1,11 @@
 @use 'tokens' as *;
 @use 'mixins' as *;
 
-.hall { position: relative; background: var(--ink); color: var(--cream); padding: 90px 0 40px; overflow: hidden; }
+.hall { position: relative; background: var(--ink); color: var(--cream); padding: clamp(80px, 9vw, 130px) 0 48px; overflow: hidden; }
 .head { @include container; display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
-.h { @include display(clamp(56px, 8vw, 128px)); }
+.h { @include display; }
 .now { @include label; padding: 8px 12px; border-radius: 999px; background: rgba($cream, 0.12); }
-.canvas { width: 100%; height: clamp(320px, 34vw, 480px); margin-top: 24px; touch-action: pan-y; }
+.canvas { width: 100%; height: clamp(420px, 50vw, 760px); margin-top: 32px; touch-action: pan-y; }
 .hint { @include label; text-align: center; color: var(--fog); margin: 12px 0 0; }
 .strip {
   list-style: none;

@@ -45,7 +45,7 @@ export default function Experience({ settings, children }: { settings: SiteSetti
   const timers = useRef<number[]>([]);
   const [introDone, setIntroDone] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [cover, setCover] = useState<CoverState>({ title: 'Κάρλα', num: 'Νο 1', phase: 'hold' });
+  const [cover, setCover] = useState<CoverState>({ title: 'Κάρλα', num: 'Κανάλια Μαγνησίας', phase: 'hold' });
   const [textSize, setTextSize] = useState<TextSize>('m');
   const [contrast, setContrast] = useState(false);
   const [motionOff, setMotionOff] = useState(false);

@@ -5,6 +5,7 @@ import { gsap, prefersStill } from '@/lib/gsap';
 import Button from '@/components/ui/Button';
 import Lightbox from '@/components/ui/Lightbox';
 import { archiveCategoryLabel, type ArchiveCategory, type ArchivePhoto } from '@/lib/content';
+import SectionHead from '@/components/ui/SectionHead';
 import s from './Archive.module.scss';
 
 const COLS = 6;
@@ -110,14 +111,13 @@ export default function Archive({ photos }: { photos: ArchivePhoto[] }) {
           >
             <figure>
               <div className={s.ph} style={{ height: t.height }}><img src={t.image.src} alt="" draggable={false} loading="lazy" /></div>
-              <figcaption><span>Νο {t.no} · {t.caption}</span><span>{t.year}</span></figcaption>
+              <figcaption><span>{t.no} — {t.caption}</span><span>{t.year}</span></figcaption>
             </figure>
           </a>
         ))}
       </div>
       <div className={s.panel}>
-        <span className={s.kicker}>Φωτογραφικό αρχείο</span>
-        <h2 id="archive-title" className={s.h}>Αρχείο</h2>
+        <SectionHead index="06" kicker="Φωτογραφικό αρχείο" title="Ό,τι θυμάται η λίμνη" id="archive-title" />
         <div className={s.chips} role="group" aria-label="Κατηγορίες φωτογραφιών">
           {(['all', 'karavi', 'fishing', 'louro', 'drainage'] as const).map((c) => (
             <button key={c} type="button" className={s.chip} aria-pressed={cat === c} onClick={() => setCat(c)}>

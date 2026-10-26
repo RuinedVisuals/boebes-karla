@@ -6,6 +6,7 @@ import { gsap, useGSAP, prefersStill } from '@/lib/gsap';
 import Icon from '@/components/ui/Icon';
 import VideoModal from '@/components/ui/VideoModal';
 import type { Video } from '@/lib/content';
+import SectionHead from '@/components/ui/SectionHead';
 import s from './Cinema.module.scss';
 
 /** Pinned section: the videos travel horizontally as the page scrolls (ScrollTrigger pin + scrub). */
@@ -41,7 +42,7 @@ export default function Cinema({ videos }: { videos: Video[] }) {
     <section id="cinema" ref={root} className={s.cinema} aria-labelledby="cinema-title">
       <div className={s.inner}>
         <div className={s.head}>
-          <h2 id="cinema-title" className={s.h}>Βίντεο</h2>
+          <SectionHead index="05" kicker="Βίντεο & ΜΜΕ" title="Η Κάρλα στην οθόνη" id="cinema-title" tone="light" />
           <div className={s.meta}>
             <span className={s.label}>ΕΡΤ3 · ERTflix · Astra · YouTube</span>
             <div className={s.progress}><i ref={bar} /></div>

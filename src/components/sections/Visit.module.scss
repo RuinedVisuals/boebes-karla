@@ -1,21 +1,30 @@
 @use 'tokens' as *;
 @use 'mixins' as *;
 
-.visit { background: var(--olive); color: var(--cream); padding: clamp(90px, 10vw, 150px) 0; }
-.inner { @include container; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 48px; align-items: end; }
-.intro { display: grid; gap: 24px; p { margin: 0; max-width: 520px; } }
-.label { @include label; }
-.h { @include display(clamp(56px, 8vw, 128px)); }
-.info { display: grid; gap: 18px; }
-.phone { @include serif(200); font-size: clamp(44px, 5vw, 76px); line-height: 1; letter-spacing: -0.03em; color: var(--cream); text-decoration: none; &:hover { color: var(--cream); text-decoration: underline; text-underline-offset: 8px; text-decoration-thickness: 1px; } }
-.grid {
+.visit { background: var(--olive); color: var(--cream); padding: clamp(64px, 6vw, 96px) 0; }
+.inner {
+  @include container;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 32px;
+  row-gap: 32px;
+  align-items: end;
+}
+.head { grid-column: 1 / span 5; display: grid; gap: 18px; @include below($bp-md) { grid-column: 1 / -1; } }
+.lead { margin: 0; max-width: 42ch; font-size: 1rem; line-height: 1.6; color: rgba($cream, 0.85); }
+.facts {
+  grid-column: 6 / span 7;
   margin: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  font-size: 1.0625rem;
-  dt { @include label; opacity: 0.85; }
-  dd { margin: 0; }
-  a { color: var(--cream); }
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 32px;
+  border-top: 1px solid rgba($cream, 0.25);
+  padding-top: 20px;
+  dt { @include label; opacity: 0.8; margin-bottom: 4px; }
+  dd { margin: 0; font-size: 1.0625rem; }
+  a { color: var(--cream); text-underline-offset: 4px; }
+  @include below($bp-md) { grid-column: 1 / -1; }
+  @include below($bp-sm) { grid-template-columns: 1fr; }
 }
-.actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.phone { @include serif(300); font-size: clamp(26px, 2.2vw, 34px); line-height: 1.1; text-decoration: none; &:hover { text-decoration: underline; } }
+.actions { grid-column: 6 / span 7; display: flex; gap: 10px; flex-wrap: wrap; @include below($bp-md) { grid-column: 1 / -1; } }

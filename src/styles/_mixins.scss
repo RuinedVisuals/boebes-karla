@@ -9,12 +9,13 @@
   text-transform: uppercase;
 }
 
-@mixin display($size: clamp(64px, 11vw, 180px)) {
+// Section titles: discreet, the content leads. Pass a larger size only for the hero/cover.
+@mixin display($size: clamp(38px, 4.6vw, 72px)) {
   font-family: var(--font-display), Georgia, serif;
   font-weight: 200;
   font-size: $size;
-  line-height: 0.84;
-  letter-spacing: -0.05em;
+  line-height: 0.92;
+  letter-spacing: -0.035em;
   text-transform: uppercase;
   margin: 0;
 }

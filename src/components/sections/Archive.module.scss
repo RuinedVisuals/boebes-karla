@@ -37,7 +37,7 @@
   backdrop-filter: blur(10px);
 }
 .kicker { @include label; color: var(--muted); }
-.h { @include display(clamp(56px, 7vw, 112px)); }
+.h { @include display; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip {
   min-height: 44px;

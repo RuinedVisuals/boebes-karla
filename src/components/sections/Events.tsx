@@ -5,6 +5,7 @@ import { gsap, prefersStill } from '@/lib/gsap';
 import Button from '@/components/ui/Button';
 import Icon from '@/components/ui/Icon';
 import { eventCategoryLabel, type EventCategory, type EventItem } from '@/lib/content';
+import SectionHead from '@/components/ui/SectionHead';
 import s from './Events.module.scss';
 
 const TABS: ('all' | EventCategory)[] = ['all', 'culture', 'environment', 'education'];
@@ -38,7 +39,7 @@ export default function Events({ events }: { events: EventItem[] }) {
   return (
     <section id="events" ref={root} className={s.events} aria-labelledby="events-title">
       <div className={s.head}>
-        <h2 id="events-title" className={s.h}>Δράσεις</h2>
+        <SectionHead index="04" kicker="Οι δράσεις" title="Πολιτισμός, περιβάλλον, εκπαίδευση" id="events-title" />
         <div className={s.tabs} role="group" aria-label="Κατηγορία δράσεων">
           {TABS.map((t) => (
             <button key={t} type="button" className={s.tab} aria-pressed={tab === t} onClick={() => setTab(t)}>

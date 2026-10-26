@@ -87,8 +87,9 @@ export const fallbackContent: HomeContent = {
   },
   hero: {
     image: IMG.lake,
-    video: null,
-    caption: 'Νο 01 · Η λίμνη και τα λούρα · από την έκθεση',
+    // Drop the museum film in /public/videos/museum.mp4 (from boebes-karla.gr/wp-content/uploads/2022/06/museum.mp4).
+    video: '/videos/museum.mp4',
+    caption: 'Μέσα στο μουσείο · Κανάλια Μαγνησίας',
     intro: 'Μια λίμνη χάθηκε το 1962. Ό,τι κράτησε, οι βάρκες, τα λούρα, οι φωνές των ψαράδων, το φυλάμε εδώ.',
   },
   manifesto: [
@@ -107,7 +108,7 @@ export const fallbackContent: HomeContent = {
     { title: 'Η Βοιβηίς', image: IMG.sunset },
     { title: 'Η πλατσίδα', image: IMG.castle },
     { title: 'Δίχτυα', image: IMG.ropes },
-    { title: 'Νο 1', image: IMG.boatWater },
+    { title: 'Η βάρκα «1»', image: IMG.boatWater },
     { title: 'Οι καλαμιές', image: IMG.reeds },
     { title: 'Αρχείο', image: IMG.fisherCrop },
     { title: 'Κατίκια', image: IMG.hut },

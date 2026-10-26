@@ -1,0 +1,18 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+.head { display: grid; gap: 18px; color: var(--ink); }
+.light { color: var(--cream); }
+.meta { display: flex; align-items: center; gap: 14px; }
+.index { @include label; color: var(--clay); .light & { color: var(--clay-light); } }
+.rule { width: 48px; height: 1px; background: currentColor; opacity: 0.35; }
+.kicker { @include label; opacity: 0.75; }
+.title {
+  margin: 0;
+  @include serif(300);
+  font-size: clamp(30px, 3vw, 48px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  max-width: 18ch;
+  text-wrap: balance;
+}
