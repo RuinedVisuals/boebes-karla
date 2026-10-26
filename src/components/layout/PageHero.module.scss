@@ -12,7 +12,7 @@
   [aria-current] { color: var(--clay-light); }
 }
 .title { margin: 0; display: grid; @include serif(200); font-size: clamp(52px, 9vw, 168px); line-height: 0.95; letter-spacing: -0.045em; }
-.second { padding-left: 1.1em; font-style: italic; color: var(--clay-light); @include below($bp-sm) { padding-left: 0; } }
+.second { padding-left: 1.1em; color: var(--fog); @include below($bp-sm) { padding-left: 0; } }
 .foot {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));

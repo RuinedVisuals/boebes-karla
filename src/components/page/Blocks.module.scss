@@ -28,17 +28,15 @@
   padding-bottom: clamp(20px, 2.4vw, 36px);
   .ink & { border-color: rgba($cream, 0.2); }
 }
-// The oversized chapter numeral: outlined, so it reads as print, not as a heading.
+// Chapter index: a small numbered tab above the rule, not a decoration.
 .big {
-  @include serif(200);
-  font-size: clamp(96px, 14vw, 240px);
-  line-height: 0.78;
-  letter-spacing: -0.06em;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--clay);
-  .ink & { -webkit-text-stroke-color: var(--clay-light); }
+  align-self: start;
+  @include label;
+  padding-top: 0.6em;
+  color: var(--clay);
+  .ink & { color: var(--clay-light); }
 }
-.chTitle { margin: 0; @include serif(300); font-size: clamp(36px, 5vw, 88px); line-height: 0.98; letter-spacing: -0.035em; max-width: 16ch; text-wrap: balance; }
+.chTitle { margin: 0; @include serif(400); font-size: clamp(40px, 5.4vw, 96px); line-height: 0.95; letter-spacing: -0.045em; max-width: 16ch; text-wrap: balance; }
 
 .body {
   grid-column: 1 / span 6;
@@ -48,15 +46,8 @@
   ul { margin: 0 0 1.4em; padding: 0; list-style: none; border-top: 1px solid rgba($ink, 0.15); }
   li { padding: 10px 0; border-bottom: 1px solid rgba($ink, 0.15); }
   h3 { margin: 1.6em 0 0.6em; @include label; color: var(--clay); }
-  // Drop cap on the opening paragraph, as in a printed catalogue.
-  > p:first-child::first-letter {
-    float: left;
-    @include serif(300);
-    font-size: 4.6em;
-    line-height: 0.82;
-    margin: 0.06em 0.08em 0 0;
-    color: var(--clay);
-  }
+  // The opening paragraph runs larger, as a standfirst.
+  > p:first-child { font-size: 1.3125rem; line-height: 1.55; color: inherit; }
   .ink & { color: rgba($cream, 0.88); li, ul { border-color: rgba($cream, 0.15); } }
   @include below($bp-md) { grid-column: 1 / -1; }
 }
@@ -107,15 +98,15 @@
   .ink & { border-color: rgba($cream, 0.18); }
   @include below($bp-sm) { grid-template-columns: 1fr; row-gap: 8px; }
 }
-.yearNum { @include serif(200); font-size: clamp(48px, 7vw, 120px); line-height: 0.9; letter-spacing: -0.045em; color: var(--clay); white-space: nowrap; .ink & { color: var(--clay-light); } }
+.yearNum { @include serif(400); font-size: clamp(48px, 7vw, 120px); line-height: 0.9; letter-spacing: -0.05em; white-space: nowrap; font-variant-numeric: lining-nums tabular-nums; }
 .yearBody { p { margin: 8px 0 0; max-width: 56ch; font-size: 1rem; line-height: 1.65; opacity: 0.85; } }
 .yearTitle { margin: 0; @include serif(300); font-size: clamp(22px, 2vw, 32px); line-height: 1.15; letter-spacing: -0.015em; }
 
 // ——— Quote ———
-.quote { @include section-y; background: var(--clay); color: var(--cream); overflow: hidden; figure { margin-block: 0; } }
-.mark { grid-column: 1 / span 2; @include serif(200); font-size: clamp(120px, 16vw, 280px); line-height: 0.7; opacity: 0.5; @include below($bp-md) { display: none; } }
-.quoteText { grid-column: 3 / span 9; margin: 0; @include serif(300); font-style: italic; font-size: clamp(26px, 3vw, 50px); line-height: 1.22; letter-spacing: -0.02em; text-wrap: pretty; @include below($bp-md) { grid-column: 1 / -1; } }
-.quote .kicker { grid-column: 3 / span 9; color: rgba($cream, 0.85); margin: 0; @include below($bp-md) { grid-column: 1 / -1; } }
+.quote { @include section-y; background: var(--ink); color: var(--cream); overflow: hidden; figure { margin-block: 0; } }
+.mark { grid-column: 1 / span 2; width: 48px; height: 2px; margin-top: 0.8em; background: var(--clay-light); font-size: 0; @include below($bp-md) { display: none; } }
+.quoteText { grid-column: 3 / span 9; margin: 0; @include serif(400); font-size: clamp(28px, 3.2vw, 54px); line-height: 1.15; letter-spacing: -0.03em; text-wrap: pretty; @include below($bp-md) { grid-column: 1 / -1; } }
+.quote .kicker { grid-column: 3 / span 9; color: var(--fog); margin: 0; @include below($bp-md) { grid-column: 1 / -1; } }
 
 // ——— Link index ———
 .links { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba($ink, 0.2); .ink & { border-color: rgba($cream, 0.2); } }

@@ -89,7 +89,7 @@
   @include display(clamp(30px, 3.7vw, 56px));
   line-height: 1.06;
   transition: transform 0.6s $ease;
-  .on & { transform: translateX(18px); font-style: italic; }
+  .on & { transform: translateX(18px); }
 }
 .desc {
   @include label;

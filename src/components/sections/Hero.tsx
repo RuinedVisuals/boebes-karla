@@ -7,14 +7,14 @@ import { HeroVideoScene } from '@/webgl/heroVideo';
 import SplitChars from '@/components/ui/SplitChars';
 import Button from '@/components/ui/Button';
 import Icon from '@/components/ui/Icon';
-import type { Hero as HeroData, SiteSettings } from '@/lib/content';
+import type { Hero as HeroData } from '@/lib/content';
 import s from './Hero.module.scss';
 
 /**
  * Museum footage graded dark through WebGL (liquid drift, pointer ripple, grain).
  * On scroll the film recedes into a framed window — the page "steps back" into the museum.
  */
-export default function Hero({ hero, settings }: { hero: HeroData; settings: SiteSettings }) {
+export default function Hero({ hero }: { hero: HeroData }) {
   const { introDone } = useExperience();
   const root = useRef<HTMLElement>(null);
   const frame = useRef<HTMLDivElement>(null);
@@ -89,14 +89,10 @@ export default function Hero({ hero, settings }: { hero: HeroData; settings: Sit
       </div>
 
       <div ref={text} className={s.content}>
-        <div className={`${s.row} ${s.fade}`}>
-          <span className={s.chip}><i className={s.dot} aria-hidden="true" />{hero.caption}</span>
-          <span className={s.meta}>{hero.credit && <span className={s.credit}>{hero.credit}</span>}<span className={s.coords}>{settings.coords}</span></span>
-        </div>
         <p className={s.title} aria-hidden="true">
-          <SplitChars text="Μουσειο Λιμναιου" delay={0.1} step={0.028} play={introDone} />
-          <SplitChars text="Πολιτισμου" delay={0.4} step={0.03} play={introDone} className={s.indent} />
-          <SplitChars text="Καρλας" delay={0.65} step={0.04} play={introDone} className={s.accent} />
+          <SplitChars text="Μια λίμνη" delay={0.1} step={0.028} play={introDone} />
+          <SplitChars text="στο παλιό" delay={0.4} step={0.03} play={introDone} className={s.indent} />
+          <SplitChars text="σινεμά" delay={0.65} step={0.04} play={introDone} className={s.accent} />
         </p>
         <div className={`${s.foot} ${s.fade}`}>
           <p className={s.intro}>{hero.intro}</p>

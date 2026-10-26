@@ -1,16 +1,84 @@
 @use 'tokens' as *;
 @use 'mixins' as *;
 
-.footer { background: var(--ink); color: var(--cream); padding: 64px $gutter 0; overflow: hidden; }
-.row { max-width: $container; margin: 0 auto; display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; font-size: 1rem; }
-.muted { color: var(--fog); }
-.links { display: flex; gap: 24px; flex-wrap: wrap; a { color: var(--cream); text-decoration: none; &:hover { color: var(--clay-light); } } }
-.giant {
+.footer {
+  position: relative;
+  background: var(--ink);
+  color: var(--cream);
+  padding-top: clamp(40px, 4vw, 64px);
+  border-top: 1px solid rgba($cream, 0.14);
+  overflow: hidden;
+}
+
+// ——— Columns ———
+.grid {
+  @include container;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px 32px;
+  padding-top: clamp(40px, 4vw, 64px);
+  padding-bottom: clamp(56px, 6vw, 96px);
+  @include below($bp-md) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @include below($bp-sm) { grid-template-columns: 1fr; }
+}
+.col {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  font-size: 1rem;
+  line-height: 1.5;
+  p { margin: 0; color: rgba($cream, 0.82); }
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  a { color: var(--cream); text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size 0.45s $ease, color 0.3s; padding-bottom: 2px; }
+  a:hover { background-size: 100% 1px; color: var(--clay-light); }
+  a:focus-visible { outline: 3px solid var(--clay-light); outline-offset: 3px; }
+}
+.label { margin: 0 0 8px; @include label; color: var(--fog); font-weight: 500; }
+.big { @include serif(400); font-size: clamp(26px, 2.2vw, 36px); line-height: 1.1; letter-spacing: -0.02em; }
+.clock { display: flex; align-items: center; gap: 10px; @include serif(400); font-size: clamp(26px, 2.2vw, 36px); color: var(--cream) !important; font-variant-numeric: tabular-nums; }
+.dot { width: 8px; height: 8px; border-radius: 999px; background: var(--clay-light); @include motion-ok { animation: blink 2s ease-in-out infinite; } }
+@keyframes blink { 50% { opacity: 0.25; } }
+.muted { color: var(--fog) !important; @include label; }
+
+// ——— The word: each letter is masked by its own line box and rises into place. ———
+.word {
+  @include container;
   margin: 0;
-  @include serif(200);
-  font-size: clamp(120px, 31vw, 520px);
-  line-height: 0.78;
-  letter-spacing: -0.07em;
-  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  @include serif(400);
+  font-size: clamp(96px, 30vw, 560px);
+  line-height: 1.02; // room for the tonos and the descender of ρ, nothing cropped
+  letter-spacing: -0.06em;
   white-space: nowrap;
+  user-select: none;
+}
+.mask { display: inline-block; overflow: hidden; padding: 0.04em 0.02em 0.06em; margin: -0.04em -0.05em -0.06em -0.02em; } // tight, as one word
+.ch { display: inline-block; will-change: transform; }
+
+// ——— Bottom bar ———
+.bar {
+  @include container;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  padding-bottom: 24px;
+  border-top: 1px solid rgba($cream, 0.14);
+  @include label;
+  color: var(--fog);
+}
+.top {
+  min-height: 44px;
+  padding: 0 4px;
+  border: 0;
+  background: none;
+  color: var(--cream);
+  @include label;
+  cursor: pointer;
+  span { display: inline-block; transition: transform 0.4s $ease; }
+  &:hover span { transform: translateY(-4px); }
+  @include focus-ring;
 }

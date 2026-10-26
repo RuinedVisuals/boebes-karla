@@ -45,7 +45,7 @@ export async function getHomeContent(): Promise<HomeContent> {
       halls: h.halls?.length ? h.halls.map((x: any, i: number) => ({ ...x, image: img(x.image, f.halls[i % f.halls.length].image, 900) })) : f.halls,
       events: d?.events?.length
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ? d.events.map((e: any, i: number) => ({ title: e.title, category: e.category, date: fmtDate(e.date), image: img(e.image, f.events[i % f.events.length].image, 600), href: '#events' /* switch to /draseis/${slug} once that route exists */ }))
+        ? d.events.map((e: any, i: number) => ({ title: e.title, category: e.category, date: fmtDate(e.date), image: img(e.image, f.events[i % f.events.length].image, 600), href: '/draseis' /* switch to /draseis/${slug} once posts have their own pages */ }))
         : f.events,
       videos: d?.videos?.length
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -19,7 +19,7 @@ export default async function Home() {
     <Experience settings={c.settings}>
       <Nav />
       <main id="main">
-        <Hero hero={c.hero} settings={c.settings} />
+        <Hero hero={c.hero} />
         <Manifesto segments={c.manifesto} />
         <Feature />
         <Halls halls={c.halls} />

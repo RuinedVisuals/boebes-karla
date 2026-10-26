@@ -49,8 +49,8 @@
   z-index: 1;
   @include below($bp-sm) { flex-direction: column; gap: 0; }
 }
-.left, .right { display: block; opacity: 0; }
-.left { font-style: italic; }
+.left, .right { display: block; } // visible by default; the scroll timeline sets its own start
+
 .gap { width: 28vw; @include below($bp-sm) { width: 0; height: 42svh; } }
 
 .story {

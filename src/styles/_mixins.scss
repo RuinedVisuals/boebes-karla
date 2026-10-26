@@ -9,20 +9,22 @@
   text-transform: uppercase;
 }
 
-// Section titles: discreet, the content leads. Pass a larger size only for the hero/cover.
+// Display type: sentence case at a regular weight, set tight. Pass a larger size only for the hero/cover.
 @mixin display($size: clamp(38px, 4.6vw, 72px)) {
   font-family: var(--font-display), Georgia, serif;
-  font-weight: 200;
+  font-weight: 400;
   font-size: $size;
-  line-height: 0.92;
-  letter-spacing: -0.035em;
-  text-transform: uppercase;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
   margin: 0;
 }
 
+// The serif runs one step heavier than asked: hairline 200 reads dated at large sizes, 300/400 reads contemporary.
 @mixin serif($weight: 300) {
   font-family: var(--font-display), Georgia, serif;
-  font-weight: $weight;
+  @if $weight <= 200 { font-weight: 300; }
+  @else if $weight == 300 { font-weight: 400; }
+  @else { font-weight: $weight; }
 }
 
 @mixin container {

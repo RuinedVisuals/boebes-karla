@@ -18,7 +18,7 @@ $ease-io: cubic-bezier(0.65, 0, 0.35, 1);
 $gutter: clamp(16px, 4vw, 64px);
 $container: 1750px;
 $section-y: clamp(112px, 11vw, 200px);
-$radius: 22px;
+$radius: 6px; // crisp: photos and panels are near-square, only buttons are pills
 $target: 48px;
 
 $bp-sm: 760px;

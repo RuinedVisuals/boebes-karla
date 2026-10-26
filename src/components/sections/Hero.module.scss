@@ -29,26 +29,9 @@
   gap: 28px;
   padding: 0 $gutter 56px;
 }
-.row { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
-.chip {
-  @include label;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: rgba($cream, 0.1);
-  border: 1px solid rgba($cream, 0.18);
-  backdrop-filter: blur(8px);
-}
-.dot { width: 7px; height: 7px; border-radius: 50%; background: var(--clay-light); box-shadow: 0 0 0 4px rgba($clay-light, 0.2); animation: pulse 2.4s $ease infinite; }
-@keyframes pulse { 50% { box-shadow: 0 0 0 7px rgba($clay-light, 0); } }
-.meta { display: flex; gap: 18px; align-items: center; }
-.credit { @include label; color: rgba($cream, 0.75); }
-.coords { @include label; color: var(--fog); @include below($bp-sm) { display: none; } }
 .title { @include display(clamp(34px, 9vw, 144px)); line-height: 0.86; letter-spacing: -0.045em; }
 .indent { padding-left: 1.2em; }
-.accent { text-align: right; font-style: italic; color: var(--clay-light); }
+.accent { text-align: right; }
 .foot {
   display: flex;
   justify-content: space-between;

@@ -61,7 +61,7 @@ export default function Events({ events }: { events: EventItem[] }) {
           </li>
         ))}
       </ol>
-      <div className={s.more}><Button to="events" toTitle="Δράσεις" arrow>Όλες οι δράσεις</Button></div>
+      <div className={s.more}><Button href="/draseis" arrow>Όλες οι δράσεις</Button></div>
       <div ref={preview} className={s.preview} aria-hidden="true"><img ref={previewImg} src={events[0]?.image.src} alt="" /></div>
     </section>
   );

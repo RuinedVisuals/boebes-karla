@@ -2,6 +2,8 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import Lenis from 'lenis';
+import { usePathname } from 'next/navigation';
+import { NAV } from '@/lib/nav';
 import { gsap, ScrollTrigger, prefersStill } from '@/lib/gsap';
 import Cover from '@/components/layout/Cover';
 import Menu from '@/components/layout/Menu';
@@ -45,7 +47,12 @@ export default function Experience({ settings, children }: { settings: SiteSetti
   const timers = useRef<number[]>([]);
   const [introDone, setIntroDone] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [cover, setCover] = useState<CoverState>({ title: 'Κάρλα', num: 'Κανάλια Μαγνησίας', phase: 'hold' });
+  // The intro curtain names the page being opened; the homepage keeps the museum's name.
+  const path = usePathname();
+  const page = NAV.find((n) => n.href === path);
+  const [cover, setCover] = useState<CoverState>(
+    page ? { title: page.title, num: page.desc, phase: 'hold' } : { title: 'Κάρλα', num: 'Κανάλια Μαγνησίας', phase: 'hold' },
+  );
   const [textSize, setTextSize] = useState<TextSize>('m');
   const [contrast, setContrast] = useState(false);
   const [motionOff, setMotionOff] = useState(false);
