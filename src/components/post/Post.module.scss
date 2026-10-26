@@ -1,0 +1,107 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+.post { background: var(--cream); color: var(--ink); }
+
+.head { @include container; padding-top: clamp(150px, 13vw, 220px); padding-bottom: clamp(40px, 4vw, 64px); display: grid; gap: clamp(24px, 3vw, 40px); }
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  @include label;
+  color: var(--muted);
+  a { color: var(--ink); text-decoration: none; &:hover { color: var(--clay); } }
+  [aria-current] { color: var(--clay); }
+}
+.title { margin: 0; max-width: 20ch; @include serif(400); font-size: clamp(40px, 6vw, 112px); line-height: 0.98; letter-spacing: -0.045em; text-wrap: balance; }
+.meta { display: flex; gap: 24px; align-items: baseline; @include label; color: var(--muted); border-top: 1px solid rgba($ink, 0.18); padding-top: 18px; }
+.cat { @include label; color: var(--clay); }
+
+.cover {
+  position: relative;
+  width: calc(100% - 2 * #{$gutter});
+  max-width: calc(#{$container} - 2 * #{$gutter});
+  margin-inline: auto;
+  aspect-ratio: 16 / 9;
+  max-height: 82svh;
+  border-radius: $radius;
+  overflow: hidden;
+  background: var(--ink);
+  img { object-fit: cover; }
+  iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  @include below($bp-sm) { width: 100%; border-radius: 0; }
+}
+.play {
+  position: absolute;
+  left: clamp(16px, 2.4vw, 36px);
+  bottom: clamp(16px, 2.4vw, 36px);
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 56px;
+  padding: 0 24px 0 18px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--cream);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s $ease, color 0.3s $ease;
+  &:hover { background: var(--clay); color: var(--cream); }
+  @include focus-ring;
+}
+
+.grid {
+  @include container;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 32px;
+  padding-top: clamp(56px, 6vw, 96px);
+  padding-bottom: clamp(80px, 8vw, 140px);
+}
+.side { grid-column: 1 / span 3; @include below($bp-md) { grid-column: 1 / -1; margin-bottom: 32px; } }
+.back { position: sticky; top: 120px; @include label; color: var(--ink); text-decoration: none; &:hover { color: var(--clay); } }
+.body {
+  grid-column: 5 / span 7;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  p { margin: 0 0 1.2em; }
+  > p:first-child { font-size: 1.375rem; line-height: 1.55; }
+  h2 { margin: 2em 0 0.7em; @include serif(400); font-size: clamp(26px, 2.2vw, 36px); line-height: 1.1; letter-spacing: -0.02em; }
+  > ul { margin: 0 0 1.4em; padding: 0; list-style: none; border-top: 1px solid rgba($ink, 0.15); }
+  > ul > li { position: relative; padding: 14px 0 14px 28px; border-bottom: 1px solid rgba($ink, 0.15); }
+  > ul > li::before { content: ''; position: absolute; left: 0; top: 1.45em; width: 12px; height: 1px; background: var(--clay); }
+  @include below($bp-md) { grid-column: 1 / -1; }
+}
+.gallery {
+  list-style: none;
+  margin: 40px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  button { position: relative; display: block; width: 100%; aspect-ratio: 4 / 3; padding: 0; border: 0; border-radius: 4px; overflow: hidden; cursor: pointer; background: rgba($ink, 0.08); }
+  img { object-fit: cover; transition: transform 1s $ease; }
+  button:hover img { transform: scale(1.05); }
+  button:focus-visible { outline: 3px solid var(--clay); outline-offset: 3px; }
+}
+.links { margin-top: 48px; }
+
+.next {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px 32px;
+  align-items: end;
+  padding: clamp(56px, 6vw, 96px) $gutter;
+  background: var(--cream-2);
+  color: var(--ink);
+  text-decoration: none;
+  border-top: 1px solid rgba($ink, 0.15);
+  .cat { grid-column: 1 / -1; }
+  &:hover .arrow { transform: translateX(10px); }
+  &:hover .nextTitle { color: var(--clay); }
+  @include focus-ring;
+}
+.nextTitle { @include serif(400); font-size: clamp(32px, 5vw, 88px); line-height: 1; letter-spacing: -0.04em; transition: color 0.3s $ease; }
+.arrow { font-size: clamp(32px, 4vw, 64px); transition: transform 0.5s $ease; }

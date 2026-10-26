@@ -1,3 +1,4 @@
+import { POSTS } from './posts';
 // Content model for the homepage. Mirrors the Sanity schemas in /studio/schemas.
 // `fallbackContent` is used until NEXT_PUBLIC_SANITY_PROJECT_ID is set, and as a safety net if a query fails.
 
@@ -125,15 +126,8 @@ export const fallbackContent: HomeContent = {
     { kicker: 'Ιστορία & μυθολογία', title: 'Η αποξήρανση', text: 'Χάρτες, άδειες αλιείας, εφημερίδες και οι δύο μακέτες: η λίμνη πριν και μετά.', image: IMG.lake },
     { kicker: 'Παιδικό εργαστήρι', title: 'Μικροί ψαράδες', text: 'Ιστορίες, παιχνίδια και κατασκευές για τη ζωή στη λίμνη.', image: IMG.hut },
   ],
-  events: [
-    { title: 'Ημερίδα: Το Καράβι της Λίμνης Κάρλας', category: 'culture', date: '13.12.2026', image: IMG.nets, href: '/draseis' },
-    { title: 'Το Καράβι της Κάρλας στην ΕΡΤ3', category: 'culture', date: '02.12.2025', image: IMG.castle, href: '/draseis' },
-    { title: 'Διαγωνισμός φωτογραφίας άγριας ζωής «Αγλαΐα Τσεκούρα»', category: 'environment', date: '25.05.2022', image: IMG.reeds, href: '/draseis' },
-    { title: 'Πρόγραμμα καλοκαιριού στο μουσείο', category: 'education', date: '07.08.2022', image: IMG.hutWater, href: '/draseis' },
-    { title: 'Κάρλα — Ιστορίες της λίμνης', category: 'environment', date: '19.03.2022', image: IMG.sunset, href: '/draseis' },
-    { title: 'Εκπαιδευτικές δράσεις για σχολεία', category: 'education', date: '26.01.2022', image: IMG.hut, href: '/draseis' },
-    { title: 'Βιβλιοπαρουσίαση «Η Λιμνονεραϊδούλα και οι φίλοι της»', category: 'education', date: '06.09.2021', image: IMG.boatWater, href: '/draseis' },
-  ],
+  // The latest articles (src/lib/posts.ts), each linking to its own page.
+  events: POSTS.slice(0, 7).map((p) => ({ title: p.title, category: p.category, date: p.date.split('-').reverse().join('.'), image: { src: p.cover, alt: '' }, href: `/draseis/${p.slug}` })),
   videos: [
     { title: 'Το Καράβι της Κάρλας, άυλη πολιτιστική κληρονομιά', meta: 'ΕΡΤ3 · 12.2025', image: IMG.castle, youtubeId: null, href: 'https://www.ertnews.gr/ert3/to-karavi-tis-karlas-ayli-politistiki-klironomia/' },
     { title: 'Κώδικας Μυστηρίων: ο Ήταυρος της λίμνης', meta: 'Astra · 06.2022', image: IMG.ropes, youtubeId: null, href: null },

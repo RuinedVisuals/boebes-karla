@@ -43,12 +43,12 @@
   font-size: 1.0625rem;
   line-height: 1.75;
   p { margin: 0 0 1.1em; max-width: 62ch; }
-  ul { margin: 0 0 1.4em; padding: 0; list-style: none; border-top: 1px solid rgba($ink, 0.15); }
-  li { padding: 10px 0; border-bottom: 1px solid rgba($ink, 0.15); }
+  > ul { margin: 0 0 1.4em; padding: 0; list-style: none; border-top: 1px solid rgba($ink, 0.15); }
+  > ul > li { padding: 10px 0; border-bottom: 1px solid rgba($ink, 0.15); }
   h3 { margin: 1.6em 0 0.6em; @include label; color: var(--clay); }
   // The opening paragraph runs larger, as a standfirst.
   > p:first-child { font-size: 1.3125rem; line-height: 1.55; color: inherit; }
-  .ink & { color: rgba($cream, 0.88); li, ul { border-color: rgba($cream, 0.15); } }
+  .ink & { color: rgba($cream, 0.88); > ul, > ul > li { border-color: rgba($cream, 0.15); } }
   @include below($bp-md) { grid-column: 1 / -1; }
 }
 // Without images the text runs in two newspaper columns.
