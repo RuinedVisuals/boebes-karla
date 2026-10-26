@@ -39,7 +39,7 @@ export default function Events({ events }: { events: EventItem[] }) {
   return (
     <section id="events" ref={root} className={s.events} aria-labelledby="events-title">
       <div className={s.head}>
-        <SectionHead index="04" kicker="Οι δράσεις" title="Πολιτισμός, περιβάλλον, εκπαίδευση" id="events-title" />
+        <SectionHead index="03" kicker="Οι δράσεις" title="Πολιτισμός, περιβάλλον, εκπαίδευση" id="events-title" />
         <div className={s.tabs} role="group" aria-label="Κατηγορία δράσεων">
           {TABS.map((t) => (
             <button key={t} type="button" className={s.tab} aria-pressed={tab === t} onClick={() => setTab(t)}>

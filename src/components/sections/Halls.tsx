@@ -9,10 +9,7 @@ import Icon from '@/components/ui/Icon';
 import type { Hall } from '@/lib/content';
 import s from './Halls.module.scss';
 
-// One quiet, dark tone per room (each passes 4.5:1 with the cream text).
-const TONES = ['#1d3436', '#2b2d1a', '#3a2119', '#1f2a24', '#2a2320', '#1a2426'];
-
-/** «Αίθουσες»: readable info column + 3D coverflow; the whole section takes on the tone of the active room. */
+/** «Αίθουσες»: readable info column + compact 3D coverflow, on the paper of the site. */
 export default function Halls({ halls }: { halls: Hall[] }) {
   const stage = useRef<HTMLDivElement>(null);
   const cards = useRef<(HTMLAnchorElement | null)[]>([]);
@@ -21,7 +18,7 @@ export default function Halls({ halls }: { halls: Hall[] }) {
   const { go } = useExperience();
 
   const onFrame = useCallback((pos: number) => {
-    const spread = Math.min(260, window.innerWidth * 0.2);
+    const spread = Math.min(200, window.innerWidth * 0.17);
     cards.current.forEach((node, i) => {
       if (!node) return;
       const d = i - pos, ad = Math.abs(d);
@@ -38,10 +35,10 @@ export default function Halls({ halls }: { halls: Hall[] }) {
   const h = halls[active];
 
   return (
-    <section id="halls" className={s.halls} style={{ backgroundColor: TONES[active % TONES.length] }} aria-roledescription="carousel" aria-labelledby="halls-title">
+    <section id="halls" className={s.halls} aria-roledescription="carousel" aria-labelledby="halls-title">
       <div className={s.grid}>
         <div className={s.info}>
-          <SectionHead index="03" kicker="Οι αίθουσες" title="Έξι ενότητες, μία λίμνη" id="halls-title" tone="light" />
+          <SectionHead index="02" kicker="Οι αίθουσες" title="Έξι ενότητες, μία λίμνη" id="halls-title" />
           <div key={active} className={s.detail} aria-live="polite">
             <span className={s.num}>{String(active + 1).padStart(2, '0')} / {String(halls.length).padStart(2, '0')} · {h?.kicker}</span>
             <h3 className={s.title}>{h?.title}</h3>
@@ -69,7 +66,7 @@ export default function Halls({ halls }: { halls: Hall[] }) {
                 go(hall.title, 'halls', `Αίθουσα ${String(i + 1).padStart(2, '0')}`);
               }}
             >
-              <Image src={hall.image.src} alt="" fill sizes="340px" draggable={false} />
+              <Image src={hall.image.src} alt="" fill sizes="260px" draggable={false} />
             </a>
           ))}
         </div>

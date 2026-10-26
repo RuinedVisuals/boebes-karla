@@ -8,7 +8,6 @@
   --muted: #{$muted};
   --clay: #{$clay};
   --clay-light: #{$clay-light};
-  --olive: #{$olive};
   --fog: #{$fog};
   --gutter: #{$gutter};
   --ease: #{$ease};
@@ -56,6 +55,19 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
+
+// Film grain over the whole site: one texture ties the paper and the lake sections together.
+body::after {
+  content: '';
+  position: fixed;
+  inset: -50%;
+  z-index: 250;
+  pointer-events: none;
+  background-image: $noise;
+  opacity: 0.09;
+  mix-blend-mode: overlay;
+}
+:root[data-contrast='high'] body::after { display: none; }
 
 img, video, canvas { display: block; max-width: 100%; }
 a { color: var(--clay); }

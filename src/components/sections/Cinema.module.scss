@@ -1,7 +1,7 @@
 @use 'tokens' as *;
 @use 'mixins' as *;
 
-.cinema { position: relative; background: var(--ink); color: var(--cream); overflow: hidden; }
+.cinema { @include grain(0.18, soft-light); background: var(--ink); color: var(--cream); overflow: hidden; }
 .inner { min-height: 100svh; display: grid; align-content: center; gap: 40px; padding: 80px 0; }
 .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; padding: 0 $gutter; flex-wrap: wrap; }
 .h { @include display; }

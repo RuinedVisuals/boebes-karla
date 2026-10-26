@@ -8,8 +8,6 @@ import { archiveCategoryLabel, type ArchiveCategory, type ArchivePhoto } from '@
 import SectionHead from '@/components/ui/SectionHead';
 import s from './Archive.module.scss';
 
-const COLS = 6;
-const ROWS = 4;
 const CW = 330;
 const RH = 440;
 const TILE_W = 280;
@@ -20,7 +18,10 @@ type Tile = ArchivePhoto & { col: number; row: number; no: string; idx: number }
  * «Ο φωτεινός πίνακας»: an endless, draggable light table of the archive.
  * Tiles wrap around, drift slowly, grow toward the centre; click opens the lightbox.
  */
-export default function Archive({ photos }: { photos: ArchivePhoto[] }) {
+export default function Archive({ photos, full = false }: { photos: ArchivePhoto[]; full?: boolean }) {
+  // The archive page gets a wider table, so it never repeats on a large screen.
+  const COLS = full ? 8 : 6;
+  const ROWS = full ? 5 : 4;
   const [cat, setCat] = useState<'all' | ArchiveCategory>('all');
   const [open, setOpen] = useState<number | null>(null);
   const table = useRef<HTMLDivElement>(null);
@@ -34,14 +35,14 @@ export default function Archive({ photos }: { photos: ArchivePhoto[] }) {
       out.push({ ...p, col: c, row: r, idx: out.length, no: String(out.length + 1).padStart(2, '0') });
     }
     return out;
-  }, [photos]);
+  }, [photos, COLS, ROWS]);
 
   const visible = tiles.filter((t) => cat === 'all' || t.category === cat);
   const counts = useMemo(() => {
     const m: Record<string, number> = { all: tiles.length };
     tiles.forEach((t) => { m[t.category] = (m[t.category] || 0) + 1; });
     return m;
-  }, [tiles]);
+  }, [tiles, COLS, ROWS]);
 
   useEffect(() => {
     const el = table.current;
@@ -85,7 +86,7 @@ export default function Archive({ photos }: { photos: ArchivePhoto[] }) {
       window.removeEventListener('pointermove', move);
       window.removeEventListener('pointerup', up);
     };
-  }, [tiles]);
+  }, [tiles, COLS, ROWS]);
 
   const openTile = (t: Tile) => (e: React.MouseEvent) => {
     e.preventDefault();
@@ -95,7 +96,7 @@ export default function Archive({ photos }: { photos: ArchivePhoto[] }) {
   };
 
   return (
-    <section id="archive" className={s.archive} aria-labelledby="archive-title">
+    <section id="archive" className={`${s.archive} ${full ? s.full : ''}`} aria-labelledby="archive-title">
       <div ref={table} className={s.table} data-cursor="Σύρετε">
         {tiles.map((t, k) => (
           <a
@@ -117,7 +118,7 @@ export default function Archive({ photos }: { photos: ArchivePhoto[] }) {
         ))}
       </div>
       <div className={s.panel}>
-        <SectionHead index="06" kicker="Φωτογραφικό αρχείο" title="Ό,τι θυμάται η λίμνη" id="archive-title" />
+        <SectionHead index={full ? 'Αρχείο' : '05'} kicker="Φωτογραφικό αρχείο" title="Ό,τι θυμάται η λίμνη" id="archive-title" />
         <div className={s.chips} role="group" aria-label="Κατηγορίες φωτογραφιών">
           {(['all', 'karavi', 'fishing', 'louro', 'drainage'] as const).map((c) => (
             <button key={c} type="button" className={s.chip} aria-pressed={cat === c} onClick={() => setCat(c)}>
@@ -125,7 +126,10 @@ export default function Archive({ photos }: { photos: ArchivePhoto[] }) {
             </button>
           ))}
         </div>
-        <div className={s.actions}><Button to="archive" toTitle="Αρχείο" variant="ink">Όλο το αρχείο</Button><span className={s.kicker}>Σύρετε · κλικ για μεγέθυνση</span></div>
+        <div className={s.actions}>
+          {full ? <Button href="/" variant="line">← Αρχική</Button> : <Button href="/archive" variant="ink" arrow>Όλο το αρχείο</Button>}
+          <span className={s.kicker}>Σύρετε · κλικ για μεγέθυνση</span>
+        </div>
       </div>
       {open !== null && <Lightbox photos={visible} index={open} onIndex={setOpen} onClose={() => setOpen(null)} />}
     </section>

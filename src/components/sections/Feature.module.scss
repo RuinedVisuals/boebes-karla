@@ -1,0 +1,68 @@
+@use 'tokens' as *;
+@use 'mixins' as *;
+
+.feature { background-color: var(--ink); @include ripples(50% 50%, 0.045); color: var(--cream); }
+.stage { position: relative; height: 100svh; min-height: 620px; overflow: hidden; }
+
+.frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  will-change: clip-path;
+  img { object-fit: cover; will-change: transform; }
+}
+.shade {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 0% 100%, rgba($ink, 0.85), rgba($ink, 0) 70%),
+    linear-gradient(180deg, rgba($ink, 0.5), rgba($ink, 0) 28%, rgba($ink, 0.1) 50%, rgba($ink, 0.75));
+}
+
+.meta {
+  position: absolute;
+  left: $gutter;
+  top: clamp(96px, 9vw, 130px);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  @include label;
+  z-index: 2;
+}
+.index { color: var(--clay-light); }
+.rule { width: 48px; height: 1px; background: currentColor; opacity: 0.4; }
+.coords { position: absolute; right: $gutter; top: clamp(96px, 9vw, 130px); margin: 0; @include label; color: var(--fog); z-index: 2; @include below($bp-sm) { display: none; } }
+
+// The title sits across the middle; the empty gap is where the small frame shows before it opens.
+.title {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  @include serif(200);
+  font-size: clamp(64px, 11vw, 220px);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  z-index: 1;
+  @include below($bp-sm) { flex-direction: column; gap: 0; }
+}
+.left, .right { display: block; opacity: 0; }
+.left { font-style: italic; }
+.gap { width: 28vw; @include below($bp-sm) { width: 0; height: 42svh; } }
+
+.story {
+  position: absolute;
+  left: $gutter;
+  right: $gutter;
+  bottom: clamp(40px, 5vw, 72px);
+  z-index: 2;
+  display: grid;
+  gap: 20px;
+  max-width: 640px;
+}
+.label { @include label; color: rgba($cream, 0.8); }
+.lead { margin: 0; @include serif(300); font-size: clamp(26px, 2.6vw, 42px); line-height: 1.15; letter-spacing: -0.02em; text-wrap: balance; }
+.actions { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }

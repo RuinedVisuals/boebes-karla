@@ -42,7 +42,7 @@ export default function Cinema({ videos }: { videos: Video[] }) {
     <section id="cinema" ref={root} className={s.cinema} aria-labelledby="cinema-title">
       <div className={s.inner}>
         <div className={s.head}>
-          <SectionHead index="05" kicker="Βίντεο & ΜΜΕ" title="Η Κάρλα στην οθόνη" id="cinema-title" tone="light" />
+          <SectionHead index="04" kicker="Βίντεο & ΜΜΕ" title="Η Κάρλα στην οθόνη" id="cinema-title" tone="light" />
           <div className={s.meta}>
             <span className={s.label}>ΕΡΤ3 · ERTflix · Astra · YouTube</span>
             <div className={s.progress}><i ref={bar} /></div>

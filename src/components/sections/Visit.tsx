@@ -9,7 +9,7 @@ export default function Visit({ settings }: { settings: SiteSettings }) {
     <section id="visit" className={s.visit} aria-labelledby="visit-title">
       <div className={s.inner}>
         <div className={s.head}>
-          <SectionHead index="07" kicker="Επίσκεψη" title="Ελάτε από κοντά" id="visit-title" tone="light" />
+          <SectionHead index="06" kicker="Επίσκεψη" title="Ελάτε από κοντά" id="visit-title" tone="light" />
           <p className={s.lead}>Στο παλιό σινεμά των Καναλίων, ~25 χλμ. από τον Βόλο. Σχολεία, ομάδες και μεμονωμένοι επισκέπτες.</p>
         </div>
         <dl className={s.facts}>

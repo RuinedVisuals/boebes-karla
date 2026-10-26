@@ -1,7 +1,8 @@
 @use 'tokens' as *;
 @use 'mixins' as *;
 
-.archive { position: relative; height: 900px; background: var(--cream-2); overflow: hidden; }
+.archive { @include grain; height: 900px; background: var(--cream-2); overflow: hidden; }
+.full { height: 100svh; min-height: 640px; }
 .table { position: absolute; inset: 0; touch-action: pan-y; user-select: none; }
 .tile {
   position: absolute;
@@ -53,3 +54,6 @@
   &[aria-pressed='true'] { background: var(--ink); color: var(--cream); }
 }
 .actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+
+// On its own page the panel clears the floating nav.
+.full .panel { top: clamp(104px, 9vw, 128px); }

@@ -41,7 +41,7 @@ export default function Nav() {
         ))}
       </nav>
       <div className={s.actions}>
-        <a href="#visit" className={s.visit} onClick={link('Επίσκεψη', 'visit', '07')}>Επίσκεψη</a>
+        <a href="#visit" className={s.visit} onClick={link('Επίσκεψη', 'visit', '06')}>Επίσκεψη</a>
         <button type="button" className={s.menu} onClick={openMenu} aria-expanded={menuOpen} aria-haspopup="dialog">ΜΕΝΟΥ</button>
       </div>
     </header>

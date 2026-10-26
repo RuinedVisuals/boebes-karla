@@ -1,7 +1,7 @@
 @use 'tokens' as *;
 @use 'mixins' as *;
 
-.visit { background: var(--olive); color: var(--cream); padding: clamp(64px, 6vw, 96px) 0; }
+.visit { background-color: var(--ink); @include ripples(92% 100%); color: var(--cream); padding: clamp(96px, 9vw, 150px) 0; border-bottom: 1px solid rgba($cream, 0.1); }
 .inner {
   @include container;
   display: grid;

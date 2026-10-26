@@ -1,7 +1,7 @@
 @use 'tokens' as *;
 @use 'mixins' as *;
 
-.events { @include container; overflow-x: clip; padding-top: clamp(100px, 12vw, 170px); padding-bottom: clamp(100px, 12vw, 170px); display: grid; gap: 40px; }
+.events { @include container; @include section-y; overflow-x: clip; display: grid; gap: 48px; }
 .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
 .h { @include display; color: var(--clay); }
 .tabs { display: flex; flex-wrap: wrap; gap: 8px; }

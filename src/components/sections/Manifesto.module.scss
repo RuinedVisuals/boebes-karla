@@ -3,8 +3,7 @@
 
 .manifesto {
   @include container;
-  padding-top: clamp(96px, 11vw, 170px);
-  padding-bottom: clamp(72px, 8vw, 120px);
+  @include section-y;
 }
 .grid {
   display: grid;
@@ -44,9 +43,10 @@
   border-top: 1px solid rgba($ink, 0.18);
   padding-top: 28px;
   @include below($bp-md) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  div { display: flex; flex-direction: column-reverse; gap: 6px; }
 }
-.num { margin: 0; @include serif(200); font-size: clamp(40px, 4vw, 64px); line-height: 1; letter-spacing: -0.035em; }
+// Figure on top, label underneath: every number sits on the same line whatever the label length.
+.stat { display: flex; flex-direction: column; gap: 14px; }
+.num { order: -1; margin: 0; @include serif(200); font-size: clamp(44px, 4.4vw, 72px); line-height: 1; letter-spacing: -0.035em; white-space: nowrap; font-variant-numeric: tabular-nums lining-nums; }
 .accent { color: var(--clay); }
 .label { @include label; color: var(--muted); max-width: 22ch; }
 

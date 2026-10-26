@@ -3,8 +3,7 @@
 
 .karavi {
   @include container;
-  padding-top: clamp(80px, 9vw, 140px);
-  padding-bottom: clamp(96px, 11vw, 170px);
+  @include section-y(clamp(150px, 13vw, 220px));
 }
 .top {
   display: grid;

@@ -29,7 +29,7 @@ export default function Hall({ exhibits }: { exhibits: Exhibit[] }) {
   return (
     <section id="hall" className={s.hall} aria-labelledby="hall-title">
       <div className={s.head}>
-        <SectionHead index="02" kicker="Η αίθουσα" title="Περιηγηθείτε στα εκθέματα" id="hall-title" tone="light" />
+        <SectionHead index="02" kicker="Τα εκθέματα" title="Περιηγηθείτε στα εκθέματα" id="hall-title" tone="light" />
         <span className={s.now} aria-live="polite">{String(index + 1).padStart(2, '0')} — {current?.title}</span>
       </div>
       {glOk ? (

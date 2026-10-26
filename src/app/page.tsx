@@ -3,8 +3,7 @@ import Nav from '@/components/layout/Nav';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/sections/Hero';
 import Manifesto from '@/components/sections/Manifesto';
-import Karavi from '@/components/sections/Karavi';
-import Hall from '@/components/sections/Hall';
+import Feature from '@/components/sections/Feature';
 import Halls from '@/components/sections/Halls';
 import Events from '@/components/sections/Events';
 import Cinema from '@/components/sections/Cinema';
@@ -22,8 +21,7 @@ export default async function Home() {
       <main id="main">
         <Hero hero={c.hero} settings={c.settings} />
         <Manifesto segments={c.manifesto} />
-        <Karavi />
-        <Hall exhibits={c.exhibits} />
+        <Feature />
         <Halls halls={c.halls} />
         <Events events={c.events} />
         <Cinema videos={c.videos} />

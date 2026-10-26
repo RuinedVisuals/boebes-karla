@@ -94,7 +94,7 @@ export default function Menu() {
         <div className={s.group}>
           <span className={s.label}>Σχολεία & ομάδες</span>
           <span className={s.text}>Εκπαιδευτικά προγράμματα για 6–15 ετών</span>
-          <a className={s.textLink} href="#events" onClick={(e) => { e.preventDefault(); go('Εκπαίδευση', 'events', '04'); }}>Δείτε τα προγράμματα →</a>
+          <a className={s.textLink} href="#events" onClick={(e) => { e.preventDefault(); go('Εκπαίδευση', 'events', '03'); }}>Δείτε τα προγράμματα →</a>
         </div>
         <div className={s.group}>
           <span className={s.label}>Περιήγηση 360°</span>

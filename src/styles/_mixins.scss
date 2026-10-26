@@ -62,3 +62,35 @@
   background: transparent;
   transition: background 0.2s $ease, color 0.2s $ease;
 }
+
+// Paper grain: a fixed noise layer over the section, so flat colour reads like printed stock.
+// The host needs `position: relative; isolation: isolate`.
+$noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+@mixin grain($opacity: 0.32, $blend: multiply) {
+  position: relative;
+  isolation: isolate;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: $noise;
+    opacity: $opacity;
+    mix-blend-mode: $blend;
+  }
+}
+
+// Water rings: faint concentric ripples, the site's one pattern. Used on dark (lake) sections.
+@mixin ripples($at: 85% 110%, $alpha: 0.05) {
+  background-image:
+    repeating-radial-gradient(circle at $at, transparent 0 34px, rgba($cream, $alpha) 34px 35px),
+    radial-gradient(ellipse at $at, rgba($clay, 0.10), transparent 60%);
+}
+
+// Every section breathes the same.
+@mixin section-y($top: $section-y, $bottom: $section-y) {
+  padding-top: $top;
+  padding-bottom: $bottom;
+}

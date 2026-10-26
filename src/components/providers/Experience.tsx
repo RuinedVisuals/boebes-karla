@@ -106,6 +106,8 @@ export default function Experience({ settings, children }: { settings: SiteSetti
   }, []);
 
   const go = useCallback((title: string, target?: string | null, num = 'Μουσείο Κάρλας') => {
+    // On an inner page the homepage sections aren't here: go home to that anchor instead.
+    if (target && !document.getElementById(target)) { window.location.assign(`/#${target}`); return; }
     if (prefersStill()) { jump(target); setMenuOpen(false); return; }
     lenisRef.current?.stop();
     setCover({ title, num, phase: 'in' });
