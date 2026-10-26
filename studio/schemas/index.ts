@@ -58,6 +58,7 @@ const homePage = defineType({
     defineField({ name: 'heroVideo', title: 'Βίντεο hero (mp4, βουβό loop, ≤ 6 MB)', type: 'file', options: { accept: 'video/mp4' }, group: 'hero' }),
     defineField({ name: 'heroCaption', title: 'Ετικέτα πάνω από τον τίτλο', type: 'string', group: 'hero' }),
     defineField({ name: 'heroIntro', title: 'Σύντομο κείμενο', type: 'text', rows: 2, group: 'hero' }),
+    defineField({ name: 'heroCredit', title: 'Δημιουργός βίντεο / φωτογραφίας', type: 'string', group: 'hero' }),
     defineField({
       name: 'manifesto',
       title: 'Μανιφέστο (κείμενο με μικρές εικόνες ανάμεσα)',

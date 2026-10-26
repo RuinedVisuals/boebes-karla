@@ -91,7 +91,7 @@ export default function Hero({ hero, settings }: { hero: HeroData; settings: Sit
       <div ref={text} className={s.content}>
         <div className={`${s.row} ${s.fade}`}>
           <span className={s.chip}><i className={s.dot} aria-hidden="true" />{hero.caption}</span>
-          <span className={s.coords}>{settings.coords}</span>
+          <span className={s.meta}>{hero.credit && <span className={s.credit}>{hero.credit}</span>}<span className={s.coords}>{settings.coords}</span></span>
         </div>
         <p className={s.title} aria-hidden="true">
           <SplitChars text="Μουσειο Λιμναιου" delay={0.1} step={0.028} play={introDone} />

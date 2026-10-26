@@ -2,7 +2,7 @@
 
 Νέο site του [boebes-karla.gr](https://boebes-karla.gr): Next.js 15 (App Router) · TypeScript · SCSS modules · GSAP + ScrollTrigger · Lenis · raw WebGL · Sanity. Deploy στο Vercel.
 
-Σχεδιαστική ιδέα: **«Κατάλογος Νο 1»**. Το site είναι στημένο σαν κατάλογος έκθεσης, με κάθε έκθεμα, αίθουσα, δράση και βίντεο αριθμημένο, όπως το «1» στην πλώρη του Καραβιού της Κάρλας.
+Σχεδιαστική ιδέα: το site είναι στημένο σαν κατάλογος έκθεσης. Κάθε ενότητα έχει αριθμό καταλόγου και ήσυχο τίτλο, και τον τόνο τον δίνουν η ταινία, οι εικόνες και το WebGL.
 
 ## Ξεκίνημα
 
@@ -27,12 +27,13 @@ src/
   components/
     providers/Experience  Lenis + GSAP ticker, page transitions, μενού, ρυθμίσεις προσβασιμότητας
     layout/               Nav · Menu (WebGL) · Cover (κουρτίνα μετάβασης) · Cursor · Footer
-    sections/             Hero · Manifesto · No1 · Hall · Halls · Events · Cinema · Archive · Visit
-    ui/                   Button · Icon · SplitChars · Lightbox · VideoModal
-  webgl/                  gl.ts (μικρό toolkit) · hall.ts (κοίλη αίθουσα) · menuStage.ts
+    sections/             Hero · Manifesto · Karavi · Hall · Halls · Events · Cinema · Archive · Visit
+    ui/                   SectionHead · Button · Icon · SplitChars · Lightbox · VideoModal
+  webgl/                  gl.ts (μικρό toolkit) · heroVideo.ts · hall.ts (κοίλη αίθουσα) · menuStage.ts
   lib/                    content.ts (τύποι + τοπικά δεδομένα) · nav.ts · gsap.ts · useDragInertia.ts · sanity/
 studio/                   Sanity Studio (ξεχωριστό package): schemas για όλο το περιεχόμενο
 public/images/            προσωρινές εικόνες από τα posters της έκθεσης
+public/videos/museum.mp4  η ταινία του hero (βουβή, 2,1 MB)
 ```
 
 Κάθε component έχει δικό του `*.module.scss`, που φορτώνει τα `tokens` και τα `mixins` (`@use 'tokens' as *;`).
@@ -79,7 +80,7 @@ Webhook: `POST https://<site>/api/revalidate?secret=<SANITY_REVALIDATE_SECRET>`.
 
 ## Εκκρεμότητες περιεχομένου
 
-- Πραγματικές φωτογραφίες στη θέση των αποσπασμάτων από τα posters, λεζάντες για τις 14 φωτογραφίες του αρχείου, και βίντεο για το hero (mp4, βουβό loop).
+- Πραγματικές φωτογραφίες στη θέση των αποσπασμάτων από τα posters, λεζάντες για τις 14 φωτογραφίες του αρχείου. Καθαρή έκδοση της ταινίας του hero χωρίς τα υδατογραφήματα, αν υπάρχει.
 - YouTube IDs για τα βίντεο ΜΜΕ.
 - Ωράριο και τιμές εισόδου.
 - Επιβεβαίωση των τηλεφώνων: τα `tel:` links του παλιού site δεν ταιριάζουν με τα νούμερα που εμφανίζονται.

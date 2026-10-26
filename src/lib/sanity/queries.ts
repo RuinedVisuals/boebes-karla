@@ -7,7 +7,7 @@ const IMAGE = `{ asset, alt, hotspot, crop }`;
 export const HOME_QUERY = groq`{
   "settings": *[_type == "siteSettings"][0]{ phone, phoneDisplay, mobile, mobileDisplay, email, address, coords, hours, admission, virtualTourUrl, facebook, youtube },
   "home": *[_type == "homePage"][0]{
-    heroImage ${IMAGE}, "heroVideo": heroVideo.asset->url, heroCaption, heroIntro,
+    heroImage ${IMAGE}, "heroVideo": heroVideo.asset->url, heroCaption, heroIntro, heroCredit,
     manifesto[]{ _type, text, image ${IMAGE} },
     "exhibits": exhibits[]->{ title, image ${IMAGE} },
     "halls": halls[]->{ kicker, title, text, image ${IMAGE} }
@@ -37,7 +37,7 @@ export async function getHomeContent(): Promise<HomeContent> {
       : undefined;
     return {
       settings: { ...f.settings, ...(d?.settings ?? {}) },
-      hero: { image: img(h.heroImage, f.hero.image, 2400), video: h.heroVideo || null, caption: h.heroCaption || f.hero.caption, intro: h.heroIntro || f.hero.intro },
+      hero: { image: img(h.heroImage, f.hero.image, 2400), video: h.heroVideo || null, caption: h.heroCaption || f.hero.caption, intro: h.heroIntro || f.hero.intro, credit: h.heroCredit ?? f.hero.credit },
       manifesto: manifesto ?? f.manifesto,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       exhibits: h.exhibits?.length ? h.exhibits.map((e: any, i: number) => ({ title: e.title, image: img(e.image, f.exhibits[i % f.exhibits.length].image, 1200) })) : f.exhibits,

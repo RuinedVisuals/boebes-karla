@@ -21,7 +21,7 @@ export type SiteSettings = {
   youtube: string;
 };
 
-export type Hero = { image: Img; video: string | null; caption: string; intro: string };
+export type Hero = { image: Img; video: string | null; caption: string; intro: string; credit: string | null };
 export type Exhibit = { title: string; image: Img };
 export type Hall = { kicker: string; title: string; text: string; image: Img };
 export type EventItem = { title: string; category: EventCategory; date: string; image: Img; href: string };
@@ -86,10 +86,11 @@ export const fallbackContent: HomeContent = {
     youtube: 'https://www.youtube.com/@user-nq9mf5md5s',
   },
   hero: {
-    image: IMG.lake,
+    image: { src: '/images/museum-poster.jpg', alt: 'Η λίμνη Κάρλα με πουλιά και νησίδες, πρώτο πλάνο της ταινίας του μουσείου' },
     // Drop the museum film in /public/videos/museum.mp4 (from boebes-karla.gr/wp-content/uploads/2022/06/museum.mp4).
     video: '/videos/museum.mp4',
     caption: 'Μέσα στο μουσείο · Κανάλια Μαγνησίας',
+    credit: 'Βίντεο: Δημήτρης Βουρβούλιας',
     intro: 'Μια λίμνη χάθηκε το 1962. Ό,τι κράτησε, οι βάρκες, τα λούρα, οι φωνές των ψαράδων, το φυλάμε εδώ.',
   },
   manifesto: [
