@@ -38,6 +38,8 @@ export default function Archive({ photos, full = false }: { photos: ArchivePhoto
   }, [photos, full]); // COLS/ROWS follow `full`
 
   const visible = tiles.filter((t) => cat === 'all' || t.category === cat);
+  // The table repeats photos to fill the space; the lightbox shows each one once.
+  const unique = visible.filter((t, i) => visible.findIndex((v) => v.image.src === t.image.src) === i);
   const counts = useMemo(() => {
     const m: Record<string, number> = { all: tiles.length };
     tiles.forEach((t) => { m[t.category] = (m[t.category] || 0) + 1; });
@@ -92,7 +94,7 @@ export default function Archive({ photos, full = false }: { photos: ArchivePhoto
     e.preventDefault();
     if (drag.current.moved > 8) return;
     if (cat !== 'all' && t.category !== cat) return;
-    setOpen(visible.findIndex((v) => v.idx === t.idx));
+    setOpen(unique.findIndex((v) => v.image.src === t.image.src));
   };
 
   return (
@@ -131,7 +133,7 @@ export default function Archive({ photos, full = false }: { photos: ArchivePhoto
           <span className={s.kicker}>Σύρετε · κλικ για μεγέθυνση</span>
         </div>
       </div>
-      {open !== null && <Lightbox photos={visible} index={open} onIndex={setOpen} onClose={() => setOpen(null)} />}
+      {open !== null && <Lightbox photos={unique} index={open} onIndex={setOpen} onClose={() => setOpen(null)} />}
     </section>
   );
 }
