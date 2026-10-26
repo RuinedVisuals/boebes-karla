@@ -90,9 +90,9 @@ export default function Hero({ hero }: { hero: HeroData }) {
 
       <div ref={text} className={s.content}>
         <p className={s.title} aria-hidden="true">
-          <SplitChars text="Μια λίμνη" delay={0.1} step={0.028} play={introDone} />
-          <SplitChars text="στο παλιό" delay={0.4} step={0.03} play={introDone} className={s.indent} />
-          <SplitChars text="σινεμά" delay={0.65} step={0.04} play={introDone} className={s.accent} />
+          <SplitChars text="Μουσείο Λιμναίου" delay={0.1} step={0.028} play={introDone} />
+          <SplitChars text="Πολιτισμού" delay={0.4} step={0.03} play={introDone} className={s.indent} />
+          <SplitChars text="Κάρλας" delay={0.65} step={0.04} play={introDone} className={s.accent} />
         </p>
         <div className={`${s.foot} ${s.fade}`}>
           <p className={s.intro}>{hero.intro}</p>
