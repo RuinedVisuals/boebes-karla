@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { useExperience } from '@/components/providers/Experience';
 import { MenuStage } from '@/webgl/menuStage';
 import { NAV } from '@/lib/nav';
@@ -94,7 +95,7 @@ export default function Menu() {
         <div className={s.group}>
           <span className={s.label}>Σχολεία & ομάδες</span>
           <span className={s.text}>Εκπαιδευτικά προγράμματα για 6–15 ετών</span>
-          <a className={s.textLink} href="/draseis#ekpaideusi" onClick={closeMenu}>Δείτε τα προγράμματα →</a>
+          <Link className={s.textLink} href="/draseis#ekpaideusi" onClick={closeMenu}>Δείτε τα προγράμματα →</Link>
         </div>
         <div className={s.group}>
           <span className={s.label}>Περιήγηση 360°</span>
